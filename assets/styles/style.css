@@ -1,0 +1,21 @@
+body {
+  font-family: helvetica, arial, sans-serif;
+  font-size: 14px;
+  background-color: #ececec;
+}
+
+.block:hover {
+  border: 1px dashed rgb(94, 88, 88);
+}
+
+textarea:focus{
+  border: 1px dashed rgb(94, 88, 88)!important;
+  box-shadow: 0 0 0 0 rgb(94, 88, 88)!important;
+  background-color: #eee!important;
+    
+}
+
+.add_btn{
+    border: 1px dashed rgb(94, 88, 88)!important;
+    background-color: #eee!important;
+}
