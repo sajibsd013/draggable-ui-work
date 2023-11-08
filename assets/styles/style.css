@@ -1,0 +1,82 @@
+body {
+  font-family: helvetica, arial, sans-serif;
+  font-size: 14px;
+  background-color: #ececec;
+}
+
+.block{
+  position: relative;
+}
+
+.block:hover {
+  border: 1px dashed rgb(94, 88, 88);
+}
+
+textarea:focus{
+  border: 1px dashed rgb(94, 88, 88)!important;
+  box-shadow: 0 0 0 0 rgb(94, 88, 88)!important;
+  background-color: #eee!important;
+}
+
+.add_btn{
+    border: 1px dashed rgb(94, 88, 88)!important;
+    background-color: #eee!important;
+}
+
+.outer_action__btn{
+  visibility: hidden;
+  opacity: 0.3;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+
+}
+.outer_action__btn:hover{
+  opacity: 1;
+}
+
+.block__outer:hover .outer_action__btn{
+  visibility: visible;
+}
+.pointer{
+  cursor: pointer;
+}
+
+.action .trash__btn{
+  position: absolute;
+  top: -15px;
+  right: -10px;
+  padding: 3px;
+}
+
+.inner_move__btn,
+.inner_trash__btn{
+  opacity: 0.3;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  visibility: hidden;
+}
+
+.inner_trash__btn{
+  position: absolute;
+  top: -7px;
+  right: -10px;
+}
+
+.block__inner:hover .inner_action__btn{
+  visibility: visible;
+}
+
+.new_section{
+  background-color: #ececec;
+}
+
+.new_section_image{
+  padding: 10px;
+  transition: all .35s ease-in-out;
+}
+
+.new_section_image:hover{
+  padding: 0px;
+}
