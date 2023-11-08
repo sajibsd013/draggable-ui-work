@@ -1,7 +1,7 @@
 <template>
   <div class="p-4">
     <!-- {{ block_data }} -->
-    <div>
+    <div class="">
       <div class="mb-3">
         <textarea
           type="text"
@@ -13,27 +13,40 @@
         >
         </textarea>
       </div>
-      <div class="row">
+      <div class="row g-5">
         <div class="col-md-6">
           <template
             v-for="(option, index) in block_data.left_options"
             :key="index"
           >
-            <div class="row my-2">
-              <div class="col-md-4">
+            <div
+              class="row my-1 block block__inner p-1 rounded justify-content-center"
+            >
+              <div class="col-12">
+
+                <font-awesome-icon
+                  icon="fa-solid fa-xmark"
+                  class="text-white pointer inner_action__btn inner_trash__btn bg-danger rounded-circle"
+                />
+              </div>
+              <div class="col-md-5 d-flex justify-content-start aling-items-center">
+                <font-awesome-icon
+                  icon="fa-solid fa-bars "
+                  class="text-secondary pointer inner_action__btn inner_move__btn"
+                />
                 <textarea
                   type="text"
-                  class="form-control form-control-sm text-center border-0 bg-white fw-semibold"
+                  class="form-control form-control-sm border-0 bg-white fw-semibold"
                   id="title"
                   v-model="block_data.left_options[index].label"
                   rows="1"
                 >
                 </textarea>
               </div>
-              <div class="col-md-8">
+              <div class="col-md-7">
                 <textarea
                   type="text"
-                  class="form-control form-control-sm text-center border-0 bg-white small"
+                  class="form-control form-control-sm border-0 bg-white small"
                   id="title"
                   v-model="block_data.left_options[index].information"
                   rows="1"
@@ -42,30 +55,48 @@
               </div>
             </div>
           </template>
-          
-          
-          <button class="btn w-100 add_btn my-3"><font-awesome-icon icon="fa-solid fa-plus" class="bg-success text-white p-1 rounded-circle" style="width: 10px; height: 10px;" /></button>
+
+          <button class="btn w-100 add_btn my-3">
+            <font-awesome-icon
+              icon="fa-solid fa-plus"
+              class="bg-success text-white p-1 rounded-circle"
+              style="width: 10px; height: 10px"
+            />
+          </button>
         </div>
         <div class="col-md-6">
           <template
             v-for="(option, index) in block_data.right_options"
             :key="index"
           >
-            <div class="row my-2">
-              <div class="col-md-4">
+            <div
+              class="row my-2 block block__inner p-1 rounded justify-content-center"
+            >
+              <div class="col-12">
+
+                <font-awesome-icon
+                  icon="fa-solid fa-xmark"
+                  class="text-white pointer inner_action__btn inner_trash__btn bg-danger rounded-circle"
+                />
+              </div>
+              <div class="col-md-5 d-flex justify-content-start aling-items-center">
+                <font-awesome-icon
+                  icon="fa-solid fa-bars "
+                  class="text-secondary pointer inner_action__btn inner_move__btn"
+                />
                 <textarea
                   type="text"
-                  class="form-control form-control-sm text-center border-0 bg-white fw-semibold"
+                  class="form-control form-control-sm border-0 bg-white fw-semibold"
                   id="title"
                   v-model="block_data.right_options[index].label"
                   rows="1"
                 >
                 </textarea>
               </div>
-              <div class="col-md-8">
+              <div class="col-md-7">
                 <textarea
                   type="text"
-                  class="form-control form-control-sm text-center border-0 bg-white small"
+                  class="form-control form-control-sm border-0 bg-white small"
                   id="title"
                   v-model="block_data.right_options[index].information"
                   rows="1"
@@ -74,9 +105,14 @@
               </div>
             </div>
           </template>
-          
-          
-          <button class="btn w-100 add_btn my-3"><font-awesome-icon icon="fa-solid fa-plus" class="bg-success text-white p-1 rounded-circle" style="width: 10px; height: 10px;" /></button>
+
+          <button class="btn w-100 add_btn my-3">
+            <font-awesome-icon
+              icon="fa-solid fa-plus"
+              class="bg-success text-white p-1 rounded-circle"
+              style="width: 10px; height: 10px"
+            />
+          </button>
         </div>
       </div>
     </div>
