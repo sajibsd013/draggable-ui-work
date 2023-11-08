@@ -1,0 +1,48 @@
+[
+  {
+    "type": "info",
+    "name": "Name",
+    "table1": [
+      {
+        "label": "Label",
+        "information": "information"
+      }
+    ],
+    "table2": [
+      {
+        "label": "Label",
+        "information": "information"
+      }
+    ]
+  },
+  {
+    "type": "single-block",
+    "title": "New Single Block",
+    "items": [
+      {
+        "name": "Description"
+      }
+    ]
+  },
+  {
+    "type": "listing",
+    "title": "New Listing",
+    "options": [
+      {
+        "date": "Date",
+        "location": "Location",
+        "position": "Position",
+        "description": "Description"
+      }
+    ]
+  },
+  {
+    "type": "three-column",
+    "title": "New Three Column Section",
+    "items": [
+      {
+        "name": "New items"
+      }
+    ]
+  }
+]
