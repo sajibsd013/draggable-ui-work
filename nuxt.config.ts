@@ -7,5 +7,5 @@ export default defineNuxtConfig({
     "~/assets/styles/style.css",
     "@fortawesome/fontawesome-svg-core/styles.css",
   ],
-  modules: ["@pinia/nuxt"],
+  modules: ["@pinia/nuxt","@pinia-plugin-persistedstate/nuxt","@sidebase/nuxt-pdf"],
 });

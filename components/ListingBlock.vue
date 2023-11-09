@@ -17,7 +17,7 @@
         <draggable v-model="block_data.options" item-key="id">
           <template #item="{ element }">
             <div
-              class="row my-3 block block__inner p-1 rounded justify-content-end"
+              class="row my-3 block block__inner p-1 rounded-lg justify-content-end"
             >
               <div class="col-12">
                 <font-awesome-icon
@@ -95,23 +95,7 @@ export default {
   },
   data() {
     return {
-      // block_data: {
-      //   title: "New Listing",
-      //   options: [
-      //     {
-      //       date: "Date 1",
-      //       location: "Location  1 ",
-      //       position: "Position 1",
-      //       description: "Description 1",
-      //     },
-      //     {
-      //       date: "Date",
-      //       location: "Location",
-      //       position: "Position",
-      //       description: "Description",
-      //     },
-      //   ],
-      // },
+      
     };
   },
   props: {

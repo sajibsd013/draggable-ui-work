@@ -17,7 +17,7 @@
         <draggable v-model="block_data.items" item-key="id">
           <template #item="{ element }">
             <div
-              class="col-12 block block__inner p-1 rounded justify-content-end"
+              class="col-12 block block__inner p-1 rounded-lg justify-content-end"
             >
               <div class="">
                 <font-awesome-icon

@@ -18,7 +18,7 @@
           <draggable v-model="block_data.table1" item-key="id">
             <template #item="{ element }">
               <div
-                class="row my-1 block block__inner p-1 rounded justify-content-center"
+                class="row my-1 block block__inner p-1 rounded-lg justify-content-center"
               >
                 <!-- {{ element }} -->
                 <div class="col-12">
@@ -69,7 +69,7 @@
           <draggable v-model="block_data.table2" item-key="id">
             <template #item="{ element }">
               <div
-                class="row my-1 block block__inner p-1 rounded justify-content-center"
+                class="row my-1 block block__inner p-1 rounded-lg justify-content-center"
               >
                 <!-- {{ element }} -->
                 <div class="col-12">

@@ -1,9 +1,28 @@
+<script setup >
+import { useStore } from "@/store";
+import { ref } from 'vue'
+import { exportToPDF } from '#imports'
+
+const pdfSection = ref("pdfSection")
+const store = useStore();
+if (store.saveData.length) {
+  store.savedToCvData();
+} else {
+  store.getCvData();
+}
+</script>
 <template>
   <div class="container">
-    <!-- {{ cv_data }} -->
-    <!-- <StateDemo/> -->
-    <div class="my-5 border-1 border rounded p-5 bg-white">
-      <draggable v-model="cv_data" item-key="id">
+    <!-- {{ store.saveData }}
+    <br>
+    {{ store.cvData }}
+    <br>
+    {{ store.defaultData }} -->
+
+    <!-- <Test/> -->
+
+    <div class="my-3 border-1 border rounded-lg p-5 bg-white" ref="pdfSection">
+      <draggable v-model="store.cvData" item-key="id">
         <template #item="{ element }">
           <div class="block block__outer rounded">
             <div class="action d-flex justify-content-between p-1">
@@ -14,7 +33,7 @@
               <font-awesome-icon
                 icon="fa-solid fa-xmark"
                 class="text-white pointer outer_action__btn trash__btn border bg-danger rounded-circle"
-                @click="removeBlcok(element)"
+                @click="store.removeBlcok(element)"
               />
             </div>
             <template v-if="element.type == 'info'">
@@ -46,7 +65,7 @@
           />
           NEW SECTION
         </button>
-        <div class="block block__outer rounded new_section" v-if="isOpen">
+        <div class="block block__outer rounded-lg new_section" v-if="isOpen">
           <div class="action d-flex justify-content-between p-1">
             <font-awesome-icon
               icon="fa-solid fa-xmark"
@@ -61,7 +80,12 @@
                 src="@/assets/img/new-section-info.png"
                 alt="new-section-info"
                 class="w-100 pointer new_section_image"
-                @click="addNewBlock('info')"
+                @click="
+                  () => {
+                    store.addNewBlock('info');
+                    toggleOpen();
+                  }
+                "
               />
               <h6 class="small text-center my-2">INFO</h6>
             </div>
@@ -71,10 +95,14 @@
                 src="@/assets/img/new-section-3-col.png"
                 alt="new-section-3"
                 class="w-100 pointer new_section_image"
-                @click="addNewBlock('three-column')"
-
+                @click="
+                  () => {
+                    store.addNewBlock('three-column');
+                    toggleOpen();
+                  }
+                "
               />
-              <h6 class="small text-center my-2"> THREE COLUMNS</h6>
+              <h6 class="small text-center my-2">THREE COLUMNS</h6>
             </div>
 
             <div class="col-3">
@@ -82,8 +110,12 @@
                 src="@/assets/img/new-section-listing.png"
                 alt="new-section-listing"
                 class="w-100 pointer new_section_image"
-                @click="addNewBlock('listing')"
-
+                @click="
+                  () => {
+                    store.addNewBlock('listing');
+                    toggleOpen();
+                  }
+                "
               />
               <h6 class="small text-center my-2">LISTING</h6>
             </div>
@@ -92,14 +124,32 @@
                 src="@/assets/img/new-section-block.png"
                 alt="new-section-block"
                 class="w-100 pointer new_section_image"
-                @click="addNewBlock('single-block')"
-
+                @click="
+                  () => {
+                    store.addNewBlock('single-block');
+                    toggleOpen();
+                  }
+                "
               />
               <h6 class="small text-center my-2">BLOCK</h6>
             </div>
           </div>
         </div>
       </div>
+    </div>
+    <div class="mt-0 pt-0 mb-4 text-center">
+      <button class="btn btn-danger" @click="store.resetData()">
+        RESET
+        <font-awesome-icon icon="fa-solid fa-rotate-right" />
+      </button>
+      <button class="btn btn-dark mx-2" @click="store.setSaveData()">
+        SAVE
+        <font-awesome-icon icon="fa-solid fa-save" />
+      </button>
+      <button class="btn btn-dark" @click="exportToPDF('cv.pdf', pdfSection)">
+        DOWNLOAD AS PDF
+        <font-awesome-icon icon="fa-solid fa-download" />
+      </button>
     </div>
   </div>
 </template>
@@ -116,122 +166,14 @@ export default {
     return {
       isOpen: false,
       cv_data: "",
-      blocks: [
-        {
-          name: "INFO",
-          type: "info",
-          img: "@/assets/img/new-section-info.png",
-        },
-        {
-          name: "LISTING",
-          type: "listing",
-          img: "@/assets/img/new-section-3-col.png",
-        },
-        {
-          name: "THREE COLUMNS",
-          type: "three-column",
-          img: "@/assets/img/new-section-listing.png",
-        },
-        {
-          name: "BLOCK",
-          type: "single-block",
-          img: "@/assets/img/new-section-block.png",
-        },
-      ],
     };
   },
   methods: {
     toggleOpen() {
       this.isOpen = !this.isOpen;
     },
-    removeBlcok(block) {
-      this.cv_data = this.cv_data.filter((x) => x != block);
-    },
-    async getCvData() {
-      // const API_URL = window.location.origin + "";
-
-      await this.$api
-        .get(`/data/cv.json`, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-        .then((res) => {
-          console.log(res.data);
-          this.cv_data = res.data;
-          //   context.commit('getDefaultdata', res.data.results)
-        })
-        .catch((error) => {
-          console.log(error.response);
-        });
-    },
-
-    addNewBlock(type) {
-      var new_block = null;
-      if (type == "info") {
-        new_block = {
-          name: "John Doe",
-          type: type,
-          table1: [
-            {
-              label: "label",
-              information: "information",
-            },
-          ],
-          table2: [
-            {
-              label: "label",
-              information: "information",
-            },
-          ],
-        };
-      } else if (type == "single-block") {
-        new_block = {
-          title: "New Single Block",
-          type: type,
-
-          items: [
-            {
-              name: "Description",
-            },
-          ],
-        };
-      } else if (type == "listing") {
-        new_block = {
-          title: "New Listing",
-          type: type,
-          options: [
-            {
-              date: "Date",
-              location: "Location",
-              position: "Position",
-              description: "Description",
-            },
-          ],
-        };
-      } else if (type == "three-column") {
-        new_block = {
-          title: "New Three Column Section",
-          type: type,
-          items: [
-            {
-              name: "New items 1",
-            },
-            {
-              name: "New items 2",
-            },
-          ],
-        };
-      }
-      console.log(new_block);
-      this.toggleOpen()
-      this.cv_data.push(new_block);
-    },
   },
-  mounted() {
-    // this.$store.dispatch("cv/getCvData");
-    this.getCvData();
-  },
+  mounted() {},
 };
 </script>
 
