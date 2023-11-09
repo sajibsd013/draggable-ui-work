@@ -1,9 +1,6 @@
-<script setup >
+<script setup>
 import { useStore } from "@/store";
-import { ref } from 'vue'
-import { exportToPDF } from '#imports'
 
-const pdfSection = ref("pdfSection")
 const store = useStore();
 if (store.saveData.length) {
   store.savedToCvData();
@@ -13,17 +10,9 @@ if (store.saveData.length) {
 </script>
 <template>
   <div class="container">
-    <!-- {{ store.saveData }}
-    <br>
-    {{ store.cvData }}
-    <br>
-    {{ store.defaultData }} -->
-
-    <!-- <Test/> -->
-
-    <div class="my-3 border-1 border rounded-lg p-5 bg-white" ref="pdfSection">
+    <div class="my-3 border-1 border border-secondary  rounded-4 border-opacity-75 p-5 bg-white col-md-10 mx-auto" >
       <draggable v-model="store.cvData" item-key="id">
-        <template #item="{ element }">
+        <template #item="{ element, index }">
           <div class="block block__outer rounded">
             <div class="action d-flex justify-content-between p-1">
               <font-awesome-icon
@@ -48,6 +37,7 @@ if (store.saveData.length) {
             <template v-if="element.type == 'three-column'">
               <ThreeColumnBlock :block_data="element" />
             </template>
+            <hr class="" v-if="store.cvData.length-1!=index">
           </div>
         </template>
       </draggable>
@@ -65,7 +55,7 @@ if (store.saveData.length) {
           />
           NEW SECTION
         </button>
-        <div class="block block__outer rounded-lg new_section" v-if="isOpen">
+        <div class="block block__outer rounded new_section" v-if="isOpen">
           <div class="action d-flex justify-content-between p-1">
             <font-awesome-icon
               icon="fa-solid fa-xmark"
@@ -146,7 +136,7 @@ if (store.saveData.length) {
         SAVE
         <font-awesome-icon icon="fa-solid fa-save" />
       </button>
-      <button class="btn btn-dark" @click="exportToPDF('cv.pdf', pdfSection)">
+      <button class="btn btn-dark">
         DOWNLOAD AS PDF
         <font-awesome-icon icon="fa-solid fa-download" />
       </button>

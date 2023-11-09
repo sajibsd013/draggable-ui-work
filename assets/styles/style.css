@@ -6,6 +6,8 @@ body {
 
 .block{
   position: relative;
+  border: 1px solid white;
+
 }
 
 .block:hover {
@@ -19,7 +21,7 @@ textarea:focus{
 }
 
 .add_btn{
-    border: 1px dashed rgb(94, 88, 88)!important;
+    border: 1px dashed #198754!important;
     background-color: #eee!important;
 }
 
@@ -79,4 +81,8 @@ textarea:focus{
 
 .new_section_image:hover{
   padding: 0px;
+}
+
+textarea {
+  resize: none;
 }

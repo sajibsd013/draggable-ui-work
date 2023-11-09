@@ -1,6 +1,5 @@
 <template>
   <div class="py-2 px-4">
-    <!-- {{ block_data }} -->
     <div class="">
       <div class="mb-3">
         <textarea
@@ -9,7 +8,7 @@
           style="font-size: 27px"
           id="title"
           v-model="block_data.title"
-          rows="1"
+          :rows="block_data.title.split('\n').length"
         >
         </textarea>
       </div>
@@ -17,7 +16,7 @@
         <draggable v-model="block_data.items" item-key="id" class="row">
           <template #item="{ element }">
             <div
-              class="block block__inner p-1 rounded-lg justify-content-end col-4"
+              class="block block__inner p-1 rounded justify-content-end col-4"
             >
               <div class="">
                 <font-awesome-icon
@@ -38,7 +37,7 @@
                       class="form-control form-control-sm border-0 bg-white small"
                       id="title"
                       v-model="element.name"
-                      rows="1"
+                      :rows="element.name.split('\n').length"
                     >
                     </textarea>
                   </li>
@@ -67,20 +66,21 @@ export default {
   components: {
     draggable,
   },
+  computed: {
+    blockData() {
+      const new_option = {
+        name: "add_btn",
+      };
+      const temp = JSON.parse(JSON.stringify(this.block_data));
+      if(temp && temp.items){
+        temp["items"].push(new_option);
+      }
+
+      return temp;
+    },
+  },
   data() {
-    return {
-      // block_data: {
-      //   title: "New Three Column Section",
-      //   items: [
-      //     {
-      //       name: "New items 1",
-      //     },
-      //     {
-      //       name: "New items 2",
-      //     },
-      //   ],
-      // },
-    };
+    return {};
   },
   props: {
     block_data: Object,
@@ -93,10 +93,18 @@ export default {
       };
       this.block_data.items.push(new_option);
     },
+    addBtn() {
+      const new_option = {
+        name: "add_btn",
+      };
+      this.block_data.items.push(new_option);
+    },
 
     removeOption(data) {
       this.block_data.items = this.block_data.items.filter((x) => x != data);
     },
   },
+
+  mounted() {},
 };
 </script>

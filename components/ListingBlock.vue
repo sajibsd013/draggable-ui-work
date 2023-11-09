@@ -9,7 +9,7 @@
           style="font-size: 27px"
           id="title"
           v-model="block_data.title"
-          rows="1"
+          :rows="block_data.title.split('\n').length"
         >
         </textarea>
       </div>
@@ -17,7 +17,7 @@
         <draggable v-model="block_data.options" item-key="id">
           <template #item="{ element }">
             <div
-              class="row my-3 block block__inner p-1 rounded-lg justify-content-end"
+              class="row my-3 block block__inner p-1 rounded justify-content-end"
             >
               <div class="col-12">
                 <font-awesome-icon
@@ -38,7 +38,8 @@
                   class="form-control form-control-sm border-0 bg-white small"
                   id="title"
                   v-model="element.date"
-                  rows="1"
+                  :rows="element.date.split('\n').length"
+
                 >
                 </textarea>
               </div>
@@ -48,7 +49,8 @@
                   class="form-control form-control-sm border-0 bg-white small"
                   id="title"
                   v-model="element.location"
-                  rows="1"
+                  :rows="element.location.split('\n').length"
+
                 >
                 </textarea>
               </div>
@@ -58,7 +60,8 @@
                   class="form-control form-control-sm border-0 bg-white small"
                   id="title"
                   v-model="element.position"
-                  rows="1"
+                  :rows="element.position.split('\n').length"
+
                 >
                 </textarea>
               </div>
@@ -68,7 +71,7 @@
                   class="form-control form-control-sm border-0 bg-white small"
                   id="title"
                   v-model="element.description"
-                  rows="1"
+                  :rows="element.description.split('\n').length"
                 >
                 </textarea>
               </div>

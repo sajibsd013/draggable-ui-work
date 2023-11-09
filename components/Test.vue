@@ -1,17 +1,27 @@
 <template>
-  <div>
-    <div ref="pdfSection">
-      Thanks for testing out nuxt-pdf!
+    <div>
+      <textarea
+        v-model="text"
+        @keydown.enter="increaseRows"
+        :rows="rows"
+      ></textarea>
     </div>
-    <button @click="exportToPDF('my-pdf-file.pdf', pdfSection)">
-      print card
-    </button>
-  </div>
-</template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import { exportToPDF } from '#imports'
-
-const pdfSection = ref<HTMLElement | null>(null)
-</script>
+  </template>
+  
+  <script>
+  export default {
+    data() {
+      return {
+        text: "",
+        rows: 1,
+      };
+    },
+    methods: {
+      increaseRows() {
+        // Increase the number of rows when Enter key is pressed
+        this.rows++;
+      },
+    },
+  };
+  </script>
+  
