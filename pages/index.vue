@@ -17,7 +17,7 @@ if (!store.defaultData.length) {
     <div
       class="my-3 border-1 border border-secondary rounded-4 border-opacity-75 p-1 p-md-5 bg-white col-lg-10 col-md-11 mx-auto"
     >
-      <draggable v-model="store.cvData" item-key="id">
+      <draggable handle=".handle" v-model="store.cvData" item-key="id">
         <template #item="{ element, index }">
           <div class="block block__outer rounded p-1">
             <div class="">
@@ -28,7 +28,7 @@ if (!store.defaultData.length) {
               />
               <font-awesome-icon
                 icon="fa-solid fa-bars"
-                class="text-secondary pointer outer_action__btn move__btn"
+                class="text-secondary pointer outer_action__btn move__btn handle"
               />
             </div>
             <template v-if="element.type == 'info'">

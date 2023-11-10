@@ -63,7 +63,7 @@ body {
   opacity: 1;
 }
 
-.inner_move__btn,
+.inner_move__btn handle,
 .inner_trash__btn {
   /* opacity: 0.3; */
   font-size: 20px;
@@ -72,7 +72,7 @@ body {
   visibility: hidden;
 }
 
-.inner_move__btn {
+.inner_move__btn handle {
   opacity: 0.3;
 }
 .inner_trash__btn {
@@ -84,7 +84,7 @@ body {
 .inner_trash__btn:hover {
   background-color: #dc3545;
 }
-.inner_move__btn:hover {
+.inner_move__btn handle:hover {
   opacity: 1;
 }
 
@@ -139,3 +139,14 @@ textarea:hover {
     opacity: 0.8;
   }
 }
+
+.handle{
+  opacity: 0.3;
+  visibility: hidden;
+}
+.handle:hover{
+  opacity: 1;
+  visibility: visible;
+  cursor:grab!important;
+}
+

@@ -15,7 +15,7 @@
         </textarea>
       </div>
       <div class="row">
-        <draggable v-model="block_data.items" item-key="id">
+        <draggable handle=".handle" v-model="block_data.items" item-key="id">
           <template #item="{ element }">
             <div
               class="col-12 block block__inner p-1 rounded justify-content-end"
@@ -30,7 +30,7 @@
               <div class="d-flex justify-content-start aling-items-center">
                 <font-awesome-icon
                   icon="fa-solid fa-bars "
-                  class="text-secondary pointer inner_action__btn inner_move__btn me-1"
+                  class="text-secondary pointer inner_action__btn inner_move__btn handle me-1"
                 />
                 <ResizeTextarea
                   type="text"

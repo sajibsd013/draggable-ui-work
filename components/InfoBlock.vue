@@ -14,7 +14,7 @@
       </div>
       <div class="row g-5">
         <div class="col-md-6">
-          <draggable v-model="block_data.left" item-key="id">
+          <draggable handle=".handle" v-model="block_data.left" item-key="id" >
             <template #item="{ element }">
               <div
                 class="my-1 block block__inner p-1 rounded justify-content-center"
@@ -30,7 +30,7 @@
                   <div class="me-1 mt-1" style="width: 20px">
                     <font-awesome-icon
                       icon="fa-solid fa-bars "
-                      class="text-secondary pointer inner_action__btn inner_move__btn"
+                      class="text-secondary pointer inner_action__btn inner_move__btn handle"
                     />
                   </div>
                   <div class="row g-0">
@@ -68,7 +68,7 @@
           </button>
         </div>
         <div class="col-md-6">
-          <draggable v-model="block_data.right" item-key="id">
+          <draggable handle=".handle" v-model="block_data.right" item-key="id">
             <template #item="{ element }">
               <div
                 class="row my-1 block block__inner p-1 rounded justify-content-center"
@@ -84,7 +84,7 @@
                   <div class="me-1 mt-1" style="width: 20px">
                     <font-awesome-icon
                       icon="fa-solid fa-bars "
-                      class="text-secondary pointer inner_action__btn inner_move__btn"
+                      class="text-secondary pointer inner_action__btn inner_move__btn handle"
                     />
                   </div>
                   <div class="row g-0">

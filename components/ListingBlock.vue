@@ -14,7 +14,7 @@
         </textarea>
       </div>
       <div class="">
-        <draggable v-model="block_data.options" item-key="id">
+        <draggable handle=".handle" v-model="block_data.options" item-key="id">
           <template #item="{ element }">
             <div
               class="row my-3 block block__inner p-1 rounded justify-content-end"
@@ -30,7 +30,7 @@
                 <div class="me-1 mt-1" style="width: 20px">
                   <font-awesome-icon
                     icon="fa-solid fa-bars "
-                    class="text-secondary pointer inner_action__btn inner_move__btn"
+                    class="text-secondary pointer inner_action__btn inner_move__btn handle"
                   />
                 </div>
                 <div class="row justify-content-end g-0 w-100">

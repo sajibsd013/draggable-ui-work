@@ -1,40 +1,56 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-dark navbar-expand-sm bg-dark">
     <div class="container">
-      <div class="col-lg-10 mx-auto d-flex">
-        <NuxtLink class="navbar-brand fw-bold" to="/">CV builder</NuxtLink>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      <NuxtLink class="navbar-brand fw-bold" to="/">CV builder</NuxtLink>
+
+      <div class="" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <template v-if="!authenticated">
             <li class="nav-item">
               <NuxtLink class="nav-link" :to="{ name: 'login' }"
-                >Login</NuxtLink
-              >
+                >Login
+              </NuxtLink>
             </li>
             <li class="nav-item">
               <NuxtLink class="nav-link" :to="{ name: 'create' }"
                 >Create account</NuxtLink
               >
             </li>
+          </template>
+        </ul>
+    
+      </div>
+      <div class="dropdown-center" v-if="authenticated">
+          <button
+            class="btn btn-light dropdown-toggle small"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+         <small> Welcome {{ user?.username }}!</small>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end small">
+            <li><a class="dropdown-item small pointer">Profile</a></li>
+            <li><a class="dropdown-item small pointer">Setting</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item small pointer" @click="logout">Logout</a></li>
           </ul>
         </div>
-      </div>
     </div>
   </nav>
 </template>
 
-<script>
-export default {};
-</script>
+<script lang="ts" setup>
+import { storeToRefs } from "pinia"; // import storeToRefs helper hook from pinia
+import { useAuthStore } from "~/store/auth"; // import the auth store we just created
 
-<style></style>
+const router = useRouter();
+
+const { logUserOut } = useAuthStore(); // use authenticateUser action from  auth store
+const { authenticated, user } = storeToRefs(useAuthStore()); // make authenticated state reactive with storeToRefs
+
+const logout = () => {
+  logUserOut();
+  router.push("/login");
+};
+</script>
