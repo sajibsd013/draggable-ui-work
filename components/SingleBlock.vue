@@ -5,11 +5,12 @@
       <div class="mb-3">
         <textarea
           type="text"
-          class="form-control form-control-lg border-0 bg-white"
-          style="font-size: 27px"
+          class="form-control border-0 bg-white"
+          style="font-size: 25px"
+
           id="title"
           v-model="block_data.title"
-          :rows="block_data.title.split('\n').length"
+          rows="1"
         >
         </textarea>
       </div>
@@ -22,7 +23,7 @@
               <div class="">
                 <font-awesome-icon
                   icon="fa-solid fa-xmark"
-                  class="text-white pointer inner_action__btn inner_trash__btn bg-danger rounded-circle"
+                  class="text-white pointer inner_action__btn inner_trash__btn rounded-circle"
                   @click="removeOption(element)"
                 />
               </div>
@@ -31,14 +32,14 @@
                   icon="fa-solid fa-bars "
                   class="text-secondary pointer inner_action__btn inner_move__btn me-1"
                 />
-                <textarea
+                <ResizeTextarea
                   type="text"
                   class="form-control form-control-sm border-0 bg-white small"
                   id="title"
                   v-model="element.name"
-                  :rows="element.name.split('\n').length"
+                  :rows="1"
                 >
-                </textarea>
+                </ResizeTextarea>
               </div>
             </div>
           </template>
@@ -91,9 +92,7 @@ export default {
     },
 
     removeOption(data) {
-      this.block_data.items = this.block_data.items.filter(
-        (x) => x != data
-      );
+      this.block_data.items = this.block_data.items.filter((x) => x != data);
     },
   },
 };

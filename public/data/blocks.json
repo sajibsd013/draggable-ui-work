@@ -2,13 +2,13 @@
   {
     "type": "info",
     "name": "Name",
-    "table1": [
+    "left": [
       {
         "label": "Label",
         "information": "information"
       }
     ],
-    "table2": [
+    "right": [
       {
         "label": "Label",
         "information": "information"

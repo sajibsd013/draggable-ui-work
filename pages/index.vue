@@ -2,27 +2,33 @@
 import { useStore } from "@/store";
 
 const store = useStore();
-if (store.saveData.length) {
-  store.savedToCvData();
-} else {
+if (!store.cvData.length) {
   store.getCvData();
+  console.log("getCvData called");
+
+}
+if (!store.defaultData.length) {
+  store.getDefaultData();
+  console.log("getDefaultData called");
 }
 </script>
 <template>
   <div class="container">
-    <div class="my-3 border-1 border border-secondary  rounded-4 border-opacity-75 p-5 bg-white col-md-10 mx-auto" >
+    <div
+      class="my-3 border-1 border border-secondary rounded-4 border-opacity-75 p-1 p-md-5 bg-white col-lg-10 col-md-11 mx-auto"
+    >
       <draggable v-model="store.cvData" item-key="id">
         <template #item="{ element, index }">
-          <div class="block block__outer rounded">
-            <div class="action d-flex justify-content-between p-1">
+          <div class="block block__outer rounded p-1">
+            <div class="">
+              <font-awesome-icon
+                icon="fa-solid fa-xmark"
+                class="text-white pointer outer_action__btn trash__btn border rounded-circle"
+                @click="store.removeBlcok(element)"
+              />
               <font-awesome-icon
                 icon="fa-solid fa-bars"
                 class="text-secondary pointer outer_action__btn move__btn"
-              />
-              <font-awesome-icon
-                icon="fa-solid fa-xmark"
-                class="text-white pointer outer_action__btn trash__btn border bg-danger rounded-circle"
-                @click="store.removeBlcok(element)"
               />
             </div>
             <template v-if="element.type == 'info'">
@@ -37,7 +43,7 @@ if (store.saveData.length) {
             <template v-if="element.type == 'three-column'">
               <ThreeColumnBlock :block_data="element" />
             </template>
-            <hr class="" v-if="store.cvData.length-1!=index">
+            <hr class="" v-if="store.cvData.length - 1 != index" />
           </div>
         </template>
       </draggable>
@@ -132,7 +138,7 @@ if (store.saveData.length) {
         RESET
         <font-awesome-icon icon="fa-solid fa-rotate-right" />
       </button>
-      <button class="btn btn-dark mx-2" @click="store.setSaveData()">
+      <button class="btn btn-dark mx-2">
         SAVE
         <font-awesome-icon icon="fa-solid fa-save" />
       </button>

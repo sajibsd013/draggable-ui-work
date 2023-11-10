@@ -4,11 +4,12 @@
       <div class="mb-3">
         <textarea
           type="text"
-          class="form-control form-control-lg border-0 bg-white"
-          style="font-size: 27px"
+          class="form-control border-0 bg-white"
+          style="font-size: 25px"
+
           id="title"
           v-model="block_data.title"
-          :rows="block_data.title.split('\n').length"
+          rows="1"
         >
         </textarea>
       </div>
@@ -16,12 +17,12 @@
         <draggable v-model="block_data.items" item-key="id" class="row">
           <template #item="{ element }">
             <div
-              class="block block__inner p-1 rounded justify-content-end col-4"
+              class="block block__inner p-1 rounded justify-content-end col-md-4 col-6"
             >
               <div class="">
                 <font-awesome-icon
                   icon="fa-solid fa-xmark"
-                  class="text-white pointer inner_action__btn inner_trash__btn bg-danger rounded-circle"
+                  class="text-white pointer inner_action__btn inner_trash__btn rounded-circle"
                   @click="removeOption(element)"
                 />
               </div>
@@ -34,10 +35,10 @@
                   <li class="mb-0 pb-0">
                     <textarea
                       type="text"
-                      class="form-control form-control-sm border-0 bg-white small"
+                      class="form-control form-control-sm border-0 bg-white small px-0 mx-0"
                       id="title"
                       v-model="element.name"
-                      :rows="element.name.split('\n').length"
+                      rows="1"
                     >
                     </textarea>
                   </li>
@@ -72,7 +73,7 @@ export default {
         name: "add_btn",
       };
       const temp = JSON.parse(JSON.stringify(this.block_data));
-      if(temp && temp.items){
+      if (temp && temp.items) {
         temp["items"].push(new_option);
       }
 

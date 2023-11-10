@@ -4,85 +4,138 @@ body {
   background-color: #ececec;
 }
 
-.block{
+.block {
   position: relative;
   border: 1px solid white;
-
 }
 
 .block:hover {
-  border: 1px dashed rgb(94, 88, 88);
+  border: 1px dashed #aaa;
 }
 
-textarea:focus{
-  border: 1px dashed rgb(94, 88, 88)!important;
-  box-shadow: 0 0 0 0 rgb(94, 88, 88)!important;
-  background-color: #eee!important;
+
+
+.add_btn {
+  border: 1px dashed #198754 !important;
+  background-color: #eee !important;
 }
 
-.add_btn{
-    border: 1px dashed #198754!important;
-    background-color: #eee!important;
-}
-
-.outer_action__btn{
+.outer_action__btn {
   visibility: hidden;
-  opacity: 0.3;
+  /* opacity: 0.3; */
   font-size: 20px;
   width: 20px;
   height: 20px;
-
 }
-.outer_action__btn:hover{
+.outer_action__btn:hover .trash__btn {
+  background-color: red;
+}
+/* .outer_action__btn:hover{
   opacity: 1;
-}
+} */
 
-.block__outer:hover .outer_action__btn{
+.block__outer:hover .outer_action__btn {
   visibility: visible;
 }
-.pointer{
+.pointer {
   cursor: pointer;
 }
 
-.action .trash__btn{
+.trash__btn {
   position: absolute;
   top: -15px;
   right: -10px;
   padding: 3px;
+  background-color: #f4c2c7;
+  z-index: 9999;
+}
+.trash__btn:hover {
+  background-color: #dc3545;
+}
+
+.move__btn {
+  opacity: 0.3;
+  position: absolute;
+  top: 10px;
+  left: 5px;
+}
+.move__btn:hover {
+  opacity: 1;
 }
 
 .inner_move__btn,
-.inner_trash__btn{
-  opacity: 0.3;
+.inner_trash__btn {
+  /* opacity: 0.3; */
   font-size: 20px;
   width: 20px;
   height: 20px;
   visibility: hidden;
 }
 
-.inner_trash__btn{
+.inner_move__btn {
+  opacity: 0.3;
+}
+.inner_trash__btn {
   position: absolute;
   top: -7px;
   right: -10px;
+  background-color: #f4c2c7;
+}
+.inner_trash__btn:hover {
+  background-color: #dc3545;
+}
+.inner_move__btn:hover {
+  opacity: 1;
 }
 
-.block__inner:hover .inner_action__btn{
+.block__inner:hover .inner_action__btn {
   visibility: visible;
 }
 
-.new_section{
+.new_section {
   background-color: #ececec;
 }
 
-.new_section_image{
+.new_section_image {
   padding: 10px;
-  transition: all .35s ease-in-out;
+  transition: all 0.35s ease-in-out;
 }
 
-.new_section_image:hover{
+.new_section_image:hover {
   padding: 0px;
 }
 
 textarea {
   resize: none;
+  transition: all 0.35s ease-in-out;
+  border-radius: 0!important;
+
+}
+textarea:focus {
+  border: 1px dashed rgb(94, 88, 88) !important;
+  box-shadow: 0 0 0 0 rgb(94, 88, 88) !important;
+  background-color: #eee !important;
+}
+
+textarea:hover {
+  animation: animate 1.3s infinite;
+}
+
+
+@keyframes animate {
+  0% {
+    opacity: 0.7;
+  }
+  25% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  75% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0.8;
+  }
 }

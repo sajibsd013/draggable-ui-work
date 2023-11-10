@@ -2,58 +2,59 @@
   <div class="p-4">
     <!-- {{ block_data }} -->
     <div class="">
-      <div class="mb-3">
+      <div class="my-3">
         <textarea
-          type="text"
-          class="form-control form-control-lg text-center border-0 bg-white"
-          style="font-size: 32px"
+          class="form-control text-center border-0 bg-white py-1" 
+          style="font-size: 30px"
           id="name"
           v-model="block_data.name"
-          :rows="block_data.name.split('\n').length"
+          rows="1"  
         >
         </textarea>
       </div>
       <div class="row g-5">
         <div class="col-md-6">
-          <draggable v-model="block_data.table1" item-key="id">
+          <draggable v-model="block_data.left" item-key="id">
             <template #item="{ element }">
               <div
-                class="row my-1 block block__inner p-1 rounded justify-content-center"
+                class="my-1 block block__inner p-1 rounded justify-content-center"
               >
-                <!-- {{ element }} -->
-                <div class="col-12">
+                <div class="">
                   <font-awesome-icon
                     icon="fa-solid fa-xmark"
-                    class="text-white pointer inner_action__btn inner_trash__btn bg-danger rounded-circle"
+                    class="text-white pointer inner_action__btn inner_trash__btn rounded-circle"
                     @click="removeLeftOption(element)"
                   />
                 </div>
-                <div
-                  class="col-md-5 d-flex justify-content-start aling-items-center"
-                >
-                  <font-awesome-icon
-                    icon="fa-solid fa-bars "
-                    class="text-secondary pointer inner_action__btn inner_move__btn"
-                  />
-                  <textarea
-                    type="text"
-                    class="form-control form-control-sm border-0 bg-white fw-semibold"
-                    id="label"
-                    v-model="element.label"
-                    :rows="element.label.split('\n').length"
-                  >
-                  </textarea>
-                </div>
-                <div class="col-md-7">
-                  <textarea
-                    type="text"
-                    class="form-control form-control-sm border-0 bg-white small"
-                    id="information"
-                    v-model="element.information"
-                    :rows="element.information.split('\n').length"
-
-                  >
-                  </textarea>
+                <div class="d-flex justify-content-start align-items-start">
+                  <div class="me-1 mt-1" style="width: 20px">
+                    <font-awesome-icon
+                      icon="fa-solid fa-bars "
+                      class="text-secondary pointer inner_action__btn inner_move__btn"
+                    />
+                  </div>
+                  <div class="row g-0">
+                    <div class="col-md-5">
+                      <textarea
+                        type="text"
+                        class="form-control form-control-sm border-0 bg-white fw-semibold "
+                        id="label"
+                        v-model="element.label"
+                        rows="1"
+                      >
+                      </textarea>
+                    </div>
+                    <div class="col-md-7">
+                      <ResizeTextarea
+                        type="text"
+                        class="form-control form-control-sm border-0 bg-white small"
+                        id="information"
+                        v-model="element.information"
+                        :rows="1"
+                      >
+                      </ResizeTextarea>
+                    </div>
+                  </div>
                 </div>
               </div>
             </template>
@@ -67,46 +68,49 @@
           </button>
         </div>
         <div class="col-md-6">
-          <draggable v-model="block_data.table2" item-key="id">
+          <draggable v-model="block_data.right" item-key="id">
             <template #item="{ element }">
               <div
                 class="row my-1 block block__inner p-1 rounded justify-content-center"
               >
-                <!-- {{ element }} -->
-                <div class="col-12">
+                <div class="">
                   <font-awesome-icon
                     icon="fa-solid fa-xmark"
-                    class="text-white pointer inner_action__btn inner_trash__btn bg-danger rounded-circle"
+                    class="text-white pointer inner_action__btn inner_trash__btn rounded-circle"
                     @click="removeRightOption(element)"
                   />
                 </div>
-                <div
-                  class="col-md-5 d-flex justify-content-start aling-items-center"
-                >
-                  <font-awesome-icon
-                    icon="fa-solid fa-bars "
-                    class="text-secondary pointer inner_action__btn inner_move__btn"
-                  />
-                  <textarea
-                    type="text"
-                    class="form-control form-control-sm border-0 bg-white fw-semibold"
-                    id="label"
-                    v-model="element.label"
-                    :rows="element.label.split('\n').length"
-
-                  >
-                  </textarea>
-                </div>
-                <div class="col-md-7">
-                  <textarea
-                    type="text"
-                    class="form-control form-control-sm border-0 bg-white small"
-                    id="information"
-                    v-model="element.information"
-                    :rows="element.information.split('\n').length"
-
-                  >
-                  </textarea>
+                <div class="d-flex justify-content-start align-items-start">
+                  <div class="me-1 mt-1" style="width: 20px">
+                    <font-awesome-icon
+                      icon="fa-solid fa-bars "
+                      class="text-secondary pointer inner_action__btn inner_move__btn"
+                    />
+                  </div>
+                  <div class="row g-0">
+                    <div
+                      class="col-md-5 d-flex justify-content-start aling-items-center"
+                    >
+                      <textarea
+                        type="text"
+                        class="form-control form-control-sm border-0 bg-white fw-semibold"
+                        id="label"
+                        v-model="element.label"
+                        rows="1"
+                      >
+                      </textarea>
+                    </div>
+                    <div class="col-md-7">
+                      <ResizeTextarea
+                        type="text"
+                        class="form-control form-control-sm border-0 bg-white small"
+                        id="information"
+                        v-model="element.information"
+                        :rows="1"
+                      >
+                      </ResizeTextarea>
+                    </div>
+                  </div>
                 </div>
               </div>
             </template>
@@ -146,7 +150,7 @@ export default {
         label: "label",
         information: "information",
       };
-      this.block_data.table1.push(new_option);
+      this.block_data.left.push(new_option);
     },
     addRightOption() {
       console.log("RightOption added");
@@ -154,14 +158,16 @@ export default {
         label: "label",
         information: "information",
       };
-      this.block_data.table2.push(new_option);
+      this.block_data.right.push(new_option);
     },
     removeLeftOption(data) {
-      this.block_data.table1 = this.block_data.table1.filter((x) => x != data);
+      this.block_data.left = this.block_data.left.filter((x) => x != data);
     },
     removeRightOption(data) {
-      this.block_data.table2 = this.block_data.table2.filter((x) => x != data);
+      this.block_data.right = this.block_data.right.filter((x) => x != data);
     },
   },
 };
 </script>
+
+<!-- information,Description,Description -->

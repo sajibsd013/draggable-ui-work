@@ -5,11 +5,11 @@
       <div class="mb-3">
         <textarea
           type="text"
-          class="form-control form-control-lg border-0 bg-white"
-          style="font-size: 27px"
+          class="form-control border-0 bg-white"
+          style="font-size: 25px"
           id="title"
           v-model="block_data.title"
-          :rows="block_data.title.split('\n').length"
+          rows="1"
         >
         </textarea>
       </div>
@@ -19,61 +19,64 @@
             <div
               class="row my-3 block block__inner p-1 rounded justify-content-end"
             >
-              <div class="col-12">
+              <div class="">
                 <font-awesome-icon
                   icon="fa-solid fa-xmark"
-                  class="text-white pointer inner_action__btn inner_trash__btn bg-danger rounded-circle"
+                  class="text-white pointer inner_action__btn inner_trash__btn rounded-circle"
                   @click="removeOption(element)"
                 />
               </div>
-              <div
-                class="col-md-3 d-flex justify-content-start aling-items-center"
-              >
-                <font-awesome-icon
-                  icon="fa-solid fa-bars "
-                  class="text-secondary pointer inner_action__btn inner_move__btn me-1"
-                />
-                <textarea
-                  type="text"
-                  class="form-control form-control-sm border-0 bg-white small"
-                  id="title"
-                  v-model="element.date"
-                  :rows="element.date.split('\n').length"
-
-                >
-                </textarea>
-              </div>
-              <div class="col-md-2">
-                <textarea
-                  type="text"
-                  class="form-control form-control-sm border-0 bg-white small"
-                  id="title"
-                  v-model="element.location"
-                  :rows="element.location.split('\n').length"
-
-                >
-                </textarea>
-              </div>
-              <div class="col-md-7">
-                <textarea
-                  type="text"
-                  class="form-control form-control-sm border-0 bg-white small"
-                  id="title"
-                  v-model="element.position"
-                  :rows="element.position.split('\n').length"
-
-                >
-                </textarea>
-              </div>
-              <div class="col-md-7">
-                <textarea
-                  type="text"
-                  class="form-control form-control-sm border-0 bg-white small"
-                  id="title"
-                  v-model="element.description"
-                  :rows="element.description.split('\n').length"
-                >
-                </textarea>
+              <div class="d-flex justify-content-start align-items-start">
+                <div class="me-1 mt-1" style="width: 20px">
+                  <font-awesome-icon
+                    icon="fa-solid fa-bars "
+                    class="text-secondary pointer inner_action__btn inner_move__btn"
+                  />
+                </div>
+                <div class="row justify-content-end g-0 w-100">
+                  <div
+                    class="col-md-2 d-flex justify-content-start aling-items-center"
+                  >
+                    <textarea
+                      type="text"
+                      class="form-control form-control-sm border-0 bg-white small"
+                      id="title"
+                      v-model="element.date"
+                      rows="1"
+                    >
+                    </textarea>
+                  </div>
+                  <div class="col-md-3">
+                    <textarea
+                      type="text"
+                      class="form-control form-control-sm border-0 bg-white"
+                      id="title"
+                      v-model="element.location"
+                      rows="1"
+                    >
+                    </textarea>
+                  </div>
+                  <div class="col-md-7">
+                    <textarea
+                      type="text"
+                      class="form-control form-control-sm border-0 bg-white"
+                      id="title"
+                      v-model="element.position"
+                      rows="1"
+                    >
+                    </textarea>
+                  </div>
+                  <div class="col-md-7">
+                    <ResizeTextarea
+                      type="text"
+                      class="form-control form-control-sm border-0 bg-white small"
+                      id="title"
+                      v-model="element.description"
+                      :rows="1"
+                    >
+                    </ResizeTextarea>
+                  </div>
+                </div>
               </div>
             </div>
           </template>
@@ -97,9 +100,7 @@ export default {
     draggable,
   },
   data() {
-    return {
-      
-    };
+    return {};
   },
   props: {
     block_data: Object,

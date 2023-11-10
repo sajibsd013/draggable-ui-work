@@ -6,6 +6,16 @@ export default <RouterConfig>{
       name: 'home',
       path: '/',
       component: () => import('~/pages/index.vue')
+    },
+    {
+      name: 'login',
+      path: '/login',
+      component: () => import('~/pages/login.vue')
+    },
+    {
+      name: 'create',
+      path: '/create',
+      component: () => import('~/pages/create.vue')
     }
   ],
 }
