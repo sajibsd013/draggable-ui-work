@@ -16,6 +16,11 @@ export default <RouterConfig>{
       name: 'create',
       path: '/create',
       component: () => import('~/pages/create.vue')
+    },
+    {
+      name: 'profile',
+      path: '/profile',
+      component: () => import('~/pages/profile.vue')
     }
   ],
 }

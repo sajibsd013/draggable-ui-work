@@ -3,7 +3,7 @@
     <div class="container">
       <NuxtLink class="navbar-brand fw-bold" to="/">CV builder</NuxtLink>
 
-      <div class="" id="navbarSupportedContent">
+      <!-- <div class="" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <template v-if="!authenticated">
             <li class="nav-item">
@@ -19,23 +19,31 @@
           </template>
         </ul>
     
+      </div> -->
+      <div v-if="!authenticated" >
+        <NuxtLink class="btn btn-sm btn-outline-light mx-1" :to="{ name: 'login' }">Login </NuxtLink>
+        <NuxtLink class="btn btn-sm btn-outline-light" :to="{ name: 'create' }"
+          >Create account</NuxtLink
+        >
       </div>
       <div class="dropdown-center" v-if="authenticated">
-          <button
-            class="btn btn-light dropdown-toggle small"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-         <small> Welcome {{ user?.username }}!</small>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end small">
-            <li><a class="dropdown-item small pointer">Profile</a></li>
-            <li><a class="dropdown-item small pointer">Setting</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item small pointer" @click="logout">Logout</a></li>
-          </ul>
-        </div>
+        <button
+          class="btn btn-light dropdown-toggle small"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <small> Welcome {{ user?.username }}!</small>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end small">
+          <li><NuxtLink class="dropdown-item small pointer" :to="{ name: 'profile' }">Profile</NuxtLink></li>
+          <li><a class="dropdown-item small pointer">Setting</a></li>
+          <li><hr class="dropdown-divider" /></li>
+          <li>
+            <a class="dropdown-item small pointer" @click="logout">Logout</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 </template>

@@ -8,4 +8,10 @@ export default defineNuxtConfig({
     "@fortawesome/fontawesome-svg-core/styles.css",
   ],
   modules: ["@pinia/nuxt","@pinia-plugin-persistedstate/nuxt"],
+
+  runtimeConfig: {
+    public: {
+      apiBase: process.env.API_BASE_URL 
+    }
+  },
 });

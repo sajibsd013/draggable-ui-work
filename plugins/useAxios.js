@@ -1,6 +1,9 @@
 import axios from "axios";
 export default defineNuxtPlugin((nuxtApp) => {
-  const defaultUrl = "<https://localhost:3000>";
+  const config = useRuntimeConfig()
+
+  // Access baseURL universally
+  const defaultUrl = config.public.apiBase
 
   let api = axios.create({
     baseUrl: defaultUrl,
