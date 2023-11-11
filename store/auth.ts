@@ -1,4 +1,8 @@
 import { defineStore } from "pinia";
+// import { useMyFetch } from "#composables";
+
+// const appConfig = useAppConfig()
+
 
 interface UserPayloadInterface {
   username: string;
@@ -16,8 +20,9 @@ export const useAuthStore = defineStore("auth", {
     async authenticateUser({ username, password }: UserPayloadInterface) {
 
       // useFetch from nuxt 3
-      const { data, pending }: any = await useFetch(
-        "http://127.0.0.1:8000/auth/login",
+      const { data, pending }: any = await useMyFetch(
+        // "http://127.0.0.1:8000/auth/login",
+        "/auth/login",
         {
           method: "post",
           headers: { "Content-Type": "application/json" },
@@ -40,8 +45,8 @@ export const useAuthStore = defineStore("auth", {
     async getUserData() {
       const token = useCookie("token");
       // useFetch from nuxt 3
-      const { data, pending }: any = await useFetch(
-        "http://127.0.0.1:8000/auth/user",
+      const { data, pending }: any = await useMyFetch(
+        "/auth/user",
         {
           method: "get",
           headers: {
