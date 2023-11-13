@@ -156,7 +156,8 @@ textarea:hover {
 .floting__menu{
   position: fixed;
   top: 200px;
-  left: 20px
+  left: 20px;
+  transition: all 0.35s ease-in-out!important;
 }
 /* .floting__menu li{
   font-size: 12px;
@@ -165,82 +166,6 @@ textarea:hover {
 .active_theme__li{
   border-bottom: 1px solid white!important;
   color: #aaa!important;
-}
-
-.theme-default .floting__menu{
-  background-color: #606060;
-}
-.theme-default .floting__menu li{
-  background-color: #606060;
-}
-.theme-default .navbar{
-  background-color: #606060;
-}
-.theme-default .section_head{
-  font-weight: 600;
-}
-
-.theme-modern .floting__menu{
-  background-color: #1e3f5a;
-}
-.theme-modern .floting__menu li{
-  background-color: #1e3f5a;
-}
-.theme-modern .navbar{
-  background-color: #1e3f5a;
-}
-
-.theme-modern .three-column ul {
-  list-style-type: square!important;
-}
-
-.theme-modern textarea{
-    color: #1e3f5a;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 600;
-}
-
-.theme-lavender .floting__menu{
-  background-color: #1e3f5a;
-}
-.theme-lavender .floting__menu li{
-  background-color: #1e3f5a;
-}
-.theme-lavender .navbar{
-  background-color: #1e3f5a;
-}
-
-/* Moden Theme */
-.theme-lavender textarea{
-    color: #1e3f5a!important;
-    font-family: "Raleway", sans-serif;
-    font-weight: 400;
-}
-
-.theme-deco{
-  font-family: "Lato", sans-serif;
-}
-.theme-deco .floting__menu{
-  background-color: #132226;
-}
-.theme-deco .floting__menu li{
-  background-color: #132226;
-}
-.theme-deco .navbar{
-  background-color: #132226;
-}
-
-/* Moden Theme */
-.theme-deco textarea{
-    color: #132226!important;
-    font-family: "Jost", sans-serif;
-    font-weight: 500;
-}
-.theme-deco .section_head{
-  font-weight: 600;
-}
-.theme-deco .three-column ul {
-  list-style-type: none!important;
 }
 
 .des_sec{

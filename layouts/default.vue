@@ -1,5 +1,5 @@
 <template>
-  <div class="root" :class="`theme-${store.getThemes}`" >
+  <div class="root" :class="store?.cvData?.theme?`theme-${store?.cvData?.theme}`:`theme-default`">
     <Header />
     <FlotingMenu />
     <NuxtPage />
@@ -10,12 +10,11 @@
 <script lang="ts" setup>
 import { useAuthStore } from "~/store/auth"; // import the auth store we just created
 import { useStore } from "@/store";
-
+// use authenticateUser action from  auth store
 const store = useStore();
-const { refreshToken } = useAuthStore(); // use authenticateUser action from  auth store
+const { refreshToken } = useAuthStore();
 refreshToken();
-
-
+setTimeout(() => {}, 10);
 </script>
 <style scoped>
 .root {

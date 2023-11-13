@@ -2,17 +2,26 @@
 import { useStore } from "@/store";
 
 const store = useStore();
-
 </script>
 
 <template>
-  <div class="floting__menu border rounded-pill  py-5">
-    <h6 class="fw-semibold text-center text-light smalls">Themes</h6>
-    <hr class="text-light">
+  <div class="floting__menu border rounded-pill py-5  px-2">
+    <div class="d-flex justify-content-center text-white text-center">
+      <font-awesome-icon icon="fa-solid fa-bars " class="me-1" />
+      <h6 class="d-none small floting_menu__text" >Themes</h6>
+    </div>
+    <hr class="text-light" />
     <ul class="list-group rounded-0">
-     <template v-for="(themes, index) in themes_list" :key="index">
-        <li class="list-group-item small pointer text-center text-light border-dark " style="text-transform: capitalize;" :class="themes==store.getThemes?'active_theme__li':'none'" @click="store.changeThemes(`${themes}`)">{{ themes }}</li>
-     </template>
+      <template v-for="(themes, index) in themes_list" :key="index">
+        <li
+          class="list-group-item small pointer text-center text-light border-0"
+          style="text-transform: capitalize"
+          :class="themes == store.cvData.theme ? 'active_theme__li' : 'none'"
+          @click="store.changeThemes(`${themes}`)"
+        >
+          <span class="d-none floting_menu__text">{{ themes }}</span>
+        </li>
+      </template>
     </ul>
   </div>
 </template>
@@ -21,7 +30,7 @@ const store = useStore();
 export default {
   data() {
     return {
-        themes_list: ['default','modern','lavender','deco'],
+      themes_list: ["default", "modern", "lavender", "deco"],
     };
   },
 };

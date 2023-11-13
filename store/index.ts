@@ -5,17 +5,14 @@ export const useStore = defineStore("CvBuilder", {
     cv_data: [],
     default_cv: [],
     blocks: [],
-    themes:"default"
   }),
   getters: {
     cvData: (state) => state.cv_data,
     defaultData: (state) => state.default_cv,
-    getThemes: (state) => state.themes,
   },
   actions: {
     resetData(){
-      this.cv_data = this.default_cv.map(obj => JSON.parse(JSON.stringify(obj)));
-
+      this.cv_data = JSON.parse(JSON.stringify(this.default_cv))
     },
     getCvData() {
       axios
@@ -25,8 +22,10 @@ export const useStore = defineStore("CvBuilder", {
           },
         })
         .then((res) => {
-          this.cv_data = res.data.map(obj => JSON.parse(JSON.stringify(obj)));
-          this.default_cv = res.data.map(obj => JSON.parse(JSON.stringify(obj)));
+          // this.cv_data = res.data.data.map(obj => JSON.parse(JSON.stringify(obj)));
+          this.cv_data = JSON.parse(JSON.stringify(res.data));
+          this.default_cv = JSON.parse(JSON.stringify(res.data));
+          // this.default_cv = res.data.data.map(obj => JSON.parse(JSON.stringify(obj)));
 
         })
         .catch((error) => {
@@ -49,15 +48,20 @@ export const useStore = defineStore("CvBuilder", {
         });
     },
     removeBlcok(block: string) {
-      this.cv_data = this.cv_data.filter((x) => x != block);
+      this.cv_data.data = this.cv_data?.data.filter((x,index) => index!=block);
     },
     addNewBlock(type: string) {
       const block = this.blocks.find(x=>x.type==type)
+      if(this.cv_data?.data){
+        this.cv_data.data = [...this.cv_data.data, JSON.parse(JSON.stringify(block))]
+
+      }
       
-        this.cv_data = [...this.cv_data, JSON.parse(JSON.stringify(block))]
     },
     changeThemes(ac: string){
-      this.themes = ac
+      if(this.cv_data?.theme){
+        this.cv_data.theme = ac
+      }
   }
 
   },

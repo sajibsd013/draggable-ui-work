@@ -1,95 +1,81 @@
-
-
-/* Moden Theme */
-.theme-modern h2,
-.theme-modern h3,
-.theme-modern h5 {
-    color: #1e3f5a!important;
-    font-family: "Montserrat", sans-serif!important;
-    font-weight: 600!important;
-}
-
-.theme-modern {
-    color: #454545!important;
-    font-family: "Open Sans", sans-serif!important;
-}
-
-.theme-modern .section:not(:last-child)::after {
-    border-top: 1px solid #1e3f5a!important;
-    margin: 1rem 8rem 0!important;
-}
-
-.theme-modern .three-column ul {
-    list-style-type: square!important;
-}
-
-.theme-modern a {
-    color: #1e3f5a!important;
-}
-
-.custom-header.theme-modern {
+.theme-default .floting__menu{
+    background-color: #606060;
+  }
+  .theme-default .floting__menu li{
+    background-color: #606060;
+  }
+  .theme-default .navbar{
+    background-color: #606060;
+  }
+  .theme-default .section_head{
+    font-weight: 600;
+  }
+  
+  .theme-modern .floting__menu{
     background-color: #1e3f5a;
-    color: #fff;
-    font-family: helvetica, arial, sans-serif;
-}
-
-/* Lavender Theme */
-.theme-lavender h2,
-.theme-lavender h3,
-.theme-lavender h5 {
-    color: #595775;
-    font-family: "Raleway", sans-serif;
-    font-weight: 400;
-}
-
-.theme-lavender {
-    color: #555;
-    font-family: "Roboto", sans-serif;
-}
-
-.theme-lavender .three-column ul {
-    list-style-type: circle;
-}
-
-.theme-lavender .section:not(:last-child)::after {
-    border-top: 1px solid #8a87b0;
-    margin: 1rem 12rem 0;
-}
-
-.theme-lavender a {
-    color: #595775;
-}
-
-.custom-header.theme-lavender {
-    background-color: #595775;
-    color: #fff;
-    font-family: helvetica, arial, sans-serif;
-}
-
-/* Deco Theme */
-.theme-deco h2,
-.theme-deco h3,
-.theme-deco h5 {
-    color: #132226;
-    font-family: "Jost", sans-serif;
-    font-weight: 500;
-}
-
-.theme-deco {
-    color: #132226;
+  }
+  .theme-modern .floting__menu li{
+    background-color: #1e3f5a;
+  }
+  .theme-modern .navbar{
+    background-color: #1e3f5a;
+  }
+  
+  .theme-modern .three-column ul {
+    list-style-type: square!important;
+  }
+  
+  .theme-modern textarea{
+      color: #1e3f5a;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 600;
+  }
+  
+  .theme-lavender .floting__menu{
+    background-color: #1e3f5a;
+  }
+  .theme-lavender .floting__menu li{
+    background-color: #1e3f5a;
+  }
+  .theme-lavender .navbar{
+    background-color: #1e3f5a;
+  }
+  
+  /* Moden Theme */
+  .theme-lavender textarea{
+      color: #1e3f5a!important;
+      font-family: "Raleway", sans-serif;
+      font-weight: 400;
+  }
+  
+  .theme-deco{
     font-family: "Lato", sans-serif;
-}
-
-.theme-deco .three-column ul {
-    list-style-type: none;
-}
-
-.theme-deco a {
-    color: #132226;
-}
-
-.custom-header.theme-deco {
+  }
+  .theme-deco .floting__menu{
     background-color: #132226;
-    color: #fff;
-    font-family: helvetica, arial, sans-serif;
-}
+  }
+  .theme-deco .floting__menu li{
+    background-color: #132226;
+  }
+  .theme-deco .navbar{
+    background-color: #132226;
+  }
+  
+  /* Moden Theme */
+  .theme-deco textarea{
+      color: #132226!important;
+      font-family: "Jost", sans-serif;
+      font-weight: 500;
+  }
+  .theme-deco .section_head{
+    font-weight: 600;
+  }
+  .theme-deco .three-column ul {
+    list-style-type: none!important;
+  }
+  
+  
+  
+  .floting__menu:hover .floting_menu__text{
+    display: block!important;
+  }

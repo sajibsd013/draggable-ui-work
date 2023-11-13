@@ -2,12 +2,12 @@
 import { useStore } from "@/store";
 
 const store = useStore();
-if (!store.cvData.length) {
+if (!store?.cvData?.data?.length) {
   store.getCvData();
   console.log("getCvData called");
 
 }
-if (!store.defaultData.length) {
+if (!store?.defaultData?.data?.length) {
   store.getDefaultData();
   console.log("getDefaultData called");
 }
@@ -17,14 +17,14 @@ if (!store.defaultData.length) {
     <div
       class="my-3 border-1 border border-secondary rounded-4 border-opacity-75 p-1 p-md-5 bg-white col-lg-10 col-md-11 mx-auto"
     >
-      <draggable handle=".handle" v-model="store.cvData" item-key="id">
+      <draggable handle=".handle" v-model="store.cvData.data" item-key="id">
         <template #item="{ element, index }">
           <div class="block block__outer rounded p-1">
             <div class="">
               <font-awesome-icon
                 icon="fa-solid fa-xmark"
                 class="text-white pointer outer_action__btn trash__btn border rounded-circle"
-                @click="store.removeBlcok(element)"
+                @click="store.removeBlcok(index)"
               />
               <font-awesome-icon
                 icon="fa-solid fa-bars"
@@ -43,7 +43,7 @@ if (!store.defaultData.length) {
             <template v-if="element.type == 'three-column'">
               <ThreeColumnBlock :block_data="element" />
             </template>
-            <hr class="" v-if="store.cvData.length - 1 != index" />
+            <hr class="" v-if="store.cvData.data.length - 1 != index" />
           </div>
         </template>
       </draggable>
