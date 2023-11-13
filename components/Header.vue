@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-dark navbar-expand-sm bg-dark">
+  <nav class="navbar navbar-dark navbar-expand-sm">
     <div class="container">
       <NuxtLink class="navbar-brand fw-bold" to="/">CV builder</NuxtLink>
 

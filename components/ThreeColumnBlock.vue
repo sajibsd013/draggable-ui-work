@@ -4,7 +4,7 @@
       <div class="mb-3">
         <textarea
           type="text"
-          class="form-control border-0 bg-white"
+          class="form-control border-0 bg-white section_head"
           style="font-size: 25px"
 
           id="title"
@@ -26,7 +26,7 @@
                   @click="removeOption(element)"
                 />
               </div>
-              <div class="d-flex justify-content-start aling-items-center">
+              <div class="d-flex justify-content-start aling-items-center three-column">
                 <font-awesome-icon
                   icon="fa-solid fa-bars "
                   class="text-secondary pointer inner_action__btn inner_move__btn handle me-1"

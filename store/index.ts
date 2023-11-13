@@ -5,10 +5,12 @@ export const useStore = defineStore("CvBuilder", {
     cv_data: [],
     default_cv: [],
     blocks: [],
+    themes:"default"
   }),
   getters: {
     cvData: (state) => state.cv_data,
     defaultData: (state) => state.default_cv,
+    getThemes: (state) => state.themes,
   },
   actions: {
     resetData(){
@@ -54,6 +56,10 @@ export const useStore = defineStore("CvBuilder", {
       
         this.cv_data = [...this.cv_data, JSON.parse(JSON.stringify(block))]
     },
+    changeThemes(ac: string){
+      this.themes = ac
+  }
+
   },
   persist: {
     storage: persistedState.sessionStorage,

@@ -4,7 +4,7 @@
     <div class="">
       <div class="my-3">
         <textarea
-          class="form-control text-center border-0 bg-white py-1" 
+          class="form-control text-center border-0 bg-white py-1 section_head" 
           style="font-size: 30px"
           id="name"
           v-model="block_data.name"
@@ -33,7 +33,7 @@
                       class="text-secondary pointer inner_action__btn inner_move__btn handle"
                     />
                   </div>
-                  <div class="row g-0">
+                  <div class="row g-0 w-100">
                     <div class="col-md-5">
                       <textarea
                         type="text"
@@ -87,7 +87,7 @@
                       class="text-secondary pointer inner_action__btn inner_move__btn handle"
                     />
                   </div>
-                  <div class="row g-0">
+                  <div class="row g-0  w-100">
                     <div
                       class="col-md-5 d-flex justify-content-start aling-items-center"
                     >

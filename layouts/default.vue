@@ -1,6 +1,7 @@
 <template>
-  <div class="root">
+  <div class="root" :class="`theme-${store.getThemes}`" >
     <Header />
+    <FlotingMenu />
     <NuxtPage />
     <Footer />
   </div>
@@ -8,9 +9,13 @@
 
 <script lang="ts" setup>
 import { useAuthStore } from "~/store/auth"; // import the auth store we just created
+import { useStore } from "@/store";
 
+const store = useStore();
 const { refreshToken } = useAuthStore(); // use authenticateUser action from  auth store
 refreshToken();
+
+
 </script>
 <style scoped>
 .root {

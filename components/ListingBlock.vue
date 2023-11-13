@@ -5,7 +5,7 @@
       <div class="mb-3">
         <textarea
           type="text"
-          class="form-control border-0 bg-white"
+          class="form-control border-0 bg-white section_head"
           style="font-size: 25px"
           id="title"
           v-model="block_data.title"
@@ -69,7 +69,7 @@
                   <div class="col-md-7">
                     <ResizeTextarea
                       type="text"
-                      class="form-control form-control-sm border-0 bg-white small"
+                      class="form-control form-control-sm border-0 bg-white des_sec"
                       id="title"
                       v-model="element.description"
                       :rows="1"
