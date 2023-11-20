@@ -1,25 +1,25 @@
-.theme-default .floting__menu{
+/* .theme-default .floting__menu{
     background-color: #606060;
-  }
-  .theme-default .floting__menu li{
+  } */
+  /* .theme-default .floting__menu li{
     background-color: #606060;
-  }
-  .theme-default .navbar{
+  } */
+  /* .theme-default .navbar{
     background-color: #606060;
-  }
+  } */
   .theme-default .section_head{
     font-weight: 600;
   }
-  
+/*   
   .theme-modern .floting__menu{
     background-color: #1e3f5a;
   }
   .theme-modern .floting__menu li{
     background-color: #1e3f5a;
-  }
-  .theme-modern .navbar{
+  } */
+  /* .theme-modern .navbar{
     background-color: #1e3f5a;
-  }
+  } */
   
   .theme-modern .three-column ul {
     list-style-type: square!important;
@@ -31,15 +31,15 @@
       font-weight: 600;
   }
   
-  .theme-lavender .floting__menu{
+  /* .theme-lavender .floting__menu{
     background-color: #1e3f5a;
   }
   .theme-lavender .floting__menu li{
     background-color: #1e3f5a;
-  }
-  .theme-lavender .navbar{
+  } */
+  /* .theme-lavender .navbar{
     background-color: #1e3f5a;
-  }
+  } */
   
   /* Moden Theme */
   .theme-lavender textarea{
@@ -51,15 +51,15 @@
   .theme-deco{
     font-family: "Lato", sans-serif;
   }
-  .theme-deco .floting__menu{
+  /* .theme-deco .floting__menu{
     background-color: #132226;
   }
   .theme-deco .floting__menu li{
     background-color: #132226;
-  }
-  .theme-deco .navbar{
+  } */
+  /* .theme-deco .navbar{
     background-color: #132226;
-  }
+  } */
   
   /* Moden Theme */
   .theme-deco textarea{

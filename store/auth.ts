@@ -1,16 +1,11 @@
 import { defineStore } from "pinia";
-// import { useConfig } from "#composables";
-// const appConfig = useAppConfig()
 
-// const config = useConfig();
-// console.log(config);
 
-// const TOKEN_MAXAGE = config.public.accessTokenMaxAge
+const TOKEN_MAXAGE = process.env.accessTokenMaxAge
+const REFRESH_TOKEN_MAXAGE = process.env.refreshTokenMaxAge
 
-// const nuxt = useNuxtApp();
-// const TOKEN_MAXAGE = nuxt.$config.public.accessTokenMaxAge
-const TOKEN_MAXAGE = 360
-const REFRESH_TOKEN_MAXAGE = 60 * 60 * 24 * 7;
+console.log(TOKEN_MAXAGE,REFRESH_TOKEN_MAXAGE);
+
 interface UserPayloadInterface {
   username: string;
   password: string;

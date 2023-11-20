@@ -16,4 +16,10 @@ export default defineNuxtConfig({
       accessTokenMaxAge: 3600,
     }
   },
+  vite: {
+    define:{
+      "process.env.accessTokenMaxAge": 3600,
+      "process.env.refreshTokenMaxAge":  60 * 60 * 24 * 7,
+    }
+  }
 });
