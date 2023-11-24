@@ -2,19 +2,31 @@
   <div class="py-2 px-4">
     <div class="">
       <div class="mb-3">
+        <p
+          v-if="isPreview"
+          class="border-0 bg-white section_head"
+          style="font-size: 25px"
+        >
+          {{ block_data.title }}
+        </p>
         <textarea
+          v-if="!isPreview"
           type="text"
           class="form-control border-0 bg-white section_head"
           style="font-size: 25px"
-
           id="title"
           v-model="block_data.title"
           rows="1"
         >
         </textarea>
       </div>
-      <div class="row">
-        <draggable handle=".handle" v-model="block_data.items" item-key="id" class="row">
+      <div class="row" v-if="!isPreview">
+        <draggable
+          handle=".handle"
+          v-model="block_data.items"
+          item-key="id"
+          class="row"
+        >
           <template #item="{ element }">
             <div
               class="block block__inner p-1 rounded justify-content-end col-md-4 col-6"
@@ -26,7 +38,9 @@
                   @click="removeOption(element)"
                 />
               </div>
-              <div class="d-flex justify-content-start aling-items-center three-column">
+              <div
+                class="d-flex justify-content-start aling-items-center three-column"
+              >
                 <font-awesome-icon
                   icon="fa-solid fa-bars "
                   class="text-secondary pointer inner_action__btn inner_move__btn handle me-1"
@@ -35,7 +49,7 @@
                   <li class="mb-0 pb-0">
                     <textarea
                       type="text"
-                      class="form-control form-control-sm border-0 bg-white small px-0 mx-0"
+                      class="form-control form-control-sm textarea border-0 bg-white small px-0 mx-0"
                       id="title"
                       v-model="element.name"
                       rows="1"
@@ -56,6 +70,24 @@
             />
           </button>
         </div>
+      </div>
+      <div class="row g-0" v-if="isPreview">
+        <template v-for="(element, index) in block_data.items" :key="index">
+          <div
+            class="rounded justify-content-end col-md-4 col-6"
+          >
+
+              <ul class="w-100 mb-0 pb-0">
+                <li class="mb-0 pb-0">
+                  <p
+                    class="textarea form-control border-0 bg-white small px-0 mx-0 py-1 my-0"
+                  >
+                  {{ element.name }}
+                  </p>
+                </li>
+              </ul>
+          </div>
+        </template>
       </div>
     </div>
   </div>
@@ -85,6 +117,7 @@ export default {
   },
   props: {
     block_data: Object,
+    isPreview: Boolean,
   },
 
   methods: {

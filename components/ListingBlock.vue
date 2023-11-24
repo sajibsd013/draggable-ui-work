@@ -3,8 +3,15 @@
     <!-- {{ block_data }} -->
     <div class="">
       <div class="mb-3">
+        <p
+          v-if="isPreview"
+          class="border-0 bg-white section_head"
+          style="font-size: 25px"
+        >
+          {{ block_data.title }}
+        </p>
         <textarea
-          type="text"
+          v-if="!isPreview"
           class="form-control border-0 bg-white section_head"
           style="font-size: 25px"
           id="title"
@@ -13,7 +20,7 @@
         >
         </textarea>
       </div>
-      <div class="">
+      <div class="" v-if="!isPreview">
         <draggable handle=".handle" v-model="block_data.options" item-key="id">
           <template #item="{ element }">
             <div
@@ -39,7 +46,7 @@
                   >
                     <textarea
                       type="text"
-                      class="form-control form-control-sm border-0 bg-white small"
+                      class="form-control textarea form-control-sm border-0 bg-white small"
                       id="title"
                       v-model="element.date"
                       rows="1"
@@ -49,7 +56,7 @@
                   <div class="col-md-3">
                     <textarea
                       type="text"
-                      class="form-control form-control-sm border-0 bg-white"
+                      class="form-control textarea form-control-sm border-0 bg-white"
                       id="title"
                       v-model="element.location"
                       rows="1"
@@ -59,7 +66,7 @@
                   <div class="col-md-7">
                     <textarea
                       type="text"
-                      class="form-control form-control-sm border-0 bg-white"
+                      class="form-control textarea form-control-sm border-0 bg-white"
                       id="title"
                       v-model="element.position"
                       rows="1"
@@ -69,7 +76,7 @@
                   <div class="col-md-7">
                     <ResizeTextarea
                       type="text"
-                      class="form-control form-control-sm border-0 bg-white des_sec"
+                      class="form-control textarea form-control-sm border-0 bg-white des_sec"
                       id="title"
                       v-model="element.description"
                       :rows="1"
@@ -89,6 +96,39 @@
           />
         </button>
       </div>
+
+      <div class="" v-if="isPreview">
+        <template v-for="(element, index) in block_data.options" :key="index">
+          <div class="row rounded justify-content-end">
+            <div class="d-flex justify-content-start align-items-start">
+              <div class="row justify-content-end g-0 w-100">
+                <div
+                  class="col-md-2 d-flex justify-content-start aling-items-center"
+                >
+                  <p class="textarea border-0 bg-white">
+                    {{ element.date }}
+                  </p>
+                </div>
+                <div class="col-md-3">
+                  <p class="textarea border-0 bg-white">
+                    {{ element.location }}
+                  </p>
+                </div>
+                <div class="col-md-7">
+                  <p class="textarea border-0 bg-white">
+                    {{ element.position }}
+                  </p>
+                </div>
+                <div class="col-md-7">
+                  <p class="textarea border-0 bg-white des_sec">
+                    {{ element.description }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
     </div>
   </div>
 </template>
@@ -104,6 +144,7 @@ export default {
   },
   props: {
     block_data: Object,
+    isPreview: Boolean,
   },
 
   methods: {

@@ -23,9 +23,9 @@ export default <RouterConfig>{
       component: () => import('~/pages/profile.vue')
     },
     {
-      name: 'test',
-      path: '/test',
-      component: () => import('~/pages/test.vue')
+      name: 'preview',
+      path: '/preview',
+      component: () => import('~/pages/preview.vue')
     }
   ],
 }

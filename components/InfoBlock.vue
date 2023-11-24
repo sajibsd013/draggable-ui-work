@@ -3,18 +3,67 @@
     <!-- {{ block_data }} -->
     <div class="">
       <div class="my-3">
+        <p
+          v-if="isPreview"
+          class="form-control text-center border-0 bg-white py-1 section_head"
+          style="font-size: 30px"
+        >
+          {{ block_data.name }}
+        </p>
         <textarea
-          class="form-control text-center border-0 bg-white py-1 section_head" 
+          v-if="!isPreview"
+          class="form-control text-center border-0 bg-white py-1 section_head"
           style="font-size: 30px"
           id="name"
           v-model="block_data.name"
-          rows="1"  
+          rows="1"
         >
         </textarea>
       </div>
+      <!-- {{ block_data }} -->
       <div class="row g-5">
-        <div class="col-md-6">
-          <draggable handle=".handle" v-model="block_data.left" item-key="id" >
+        <div class="col-md-6" v-if="isPreview">
+          <template v-for="(element, index) in block_data.left" :key="index">
+            <div class="rounded justify-content-center">
+              <div class="d-flex justify-content-start align-items-start">
+                <div class="row g-0 w-100">
+                  <div class="col-md-5">
+                    <p class="textarea border-0 bg-white fw-semibold">
+                      {{ element.label }}
+                    </p>
+                  </div>
+                  <div class="col-md-7">
+                    <pre class="textarea border-0 bg-white">{{
+                      element.information
+                    }}</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+        <div class="col-md-6" v-if="isPreview">
+          <template v-for="(element, index) in block_data.right" :key="index">
+            <div class="rounded justify-content-center">
+              <div class="d-flex justify-content-start align-items-start">
+                <div class="row g-0 w-100">
+                  <div class="col-md-5">
+                    <p class="textarea border-0 bg-white fw-semibold">
+                      {{ element.label }}
+                    </p>
+                  </div>
+                  <div class="col-md-7">
+                    <pre class="textarea border-0 bg-white">{{
+                      element.information
+                    }}</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+        <div class="col-md-6" v-if="!isPreview">
+          <draggable handle=".handle" v-model="block_data.left" item-key="id">
             <template #item="{ element }">
               <div
                 class="my-1 block block__inner p-1 rounded justify-content-center"
@@ -37,7 +86,7 @@
                     <div class="col-md-5">
                       <textarea
                         type="text"
-                        class="form-control form-control-sm border-0 bg-white fw-semibold "
+                        class="form-control textarea form-control-sm border-0 bg-white fw-semibold"
                         id="label"
                         v-model="element.label"
                         rows="1"
@@ -47,7 +96,7 @@
                     <div class="col-md-7">
                       <ResizeTextarea
                         type="text"
-                        class="form-control form-control-sm border-0 bg-white small"
+                        class="form-control form-control-sm border-0 bg-white small textarea"
                         id="information"
                         v-model="element.information"
                         :rows="1"
@@ -67,7 +116,7 @@
             />
           </button>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" v-if="!isPreview">
           <draggable handle=".handle" v-model="block_data.right" item-key="id">
             <template #item="{ element }">
               <div
@@ -87,13 +136,13 @@
                       class="text-secondary pointer inner_action__btn inner_move__btn handle"
                     />
                   </div>
-                  <div class="row g-0  w-100">
+                  <div class="row g-0 w-100">
                     <div
                       class="col-md-5 d-flex justify-content-start aling-items-center"
                     >
                       <textarea
                         type="text"
-                        class="form-control form-control-sm border-0 bg-white fw-semibold"
+                        class="form-control form-control-sm border-0 bg-white fw-semibold textarea"
                         id="label"
                         v-model="element.label"
                         rows="1"
@@ -103,7 +152,7 @@
                     <div class="col-md-7">
                       <ResizeTextarea
                         type="text"
-                        class="form-control form-control-sm border-0 bg-white small"
+                        class="form-control form-control-sm border-0 bg-white small textarea"
                         id="information"
                         v-model="element.information"
                         :rows="1"
@@ -142,6 +191,7 @@ export default {
   },
   props: {
     block_data: Object,
+    isPreview: Boolean,
   },
   methods: {
     addLeftOption() {

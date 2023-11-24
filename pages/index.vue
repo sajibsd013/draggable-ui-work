@@ -34,16 +34,16 @@ if (!store?.defaultData?.data?.length) {
               />
             </div>
             <template v-if="element.type == 'info'">
-              <InfoBlock :block_data="element" />
+              <InfoBlock :block_data="element" :isPreview="false"/>
             </template>
             <template v-if="element.type == 'single-block'">
-              <SingleBlock :block_data="element" />
+              <SingleBlock :block_data="element" :isPreview="false"/>
             </template>
             <template v-if="element.type == 'listing'">
-              <ListingBlock :block_data="element" />
+              <ListingBlock :block_data="element" :isPreview="false"/>
             </template>
             <template v-if="element.type == 'three-column'">
-              <ThreeColumnBlock :block_data="element" />
+              <ThreeColumnBlock :block_data="element" :isPreview="false"/>
             </template>
             <hr class="" v-if="store.cvData.data.length - 1 != index" />
           </div>
@@ -144,10 +144,11 @@ if (!store?.defaultData?.data?.length) {
         SAVE
         <font-awesome-icon icon="fa-solid fa-save" />
       </button>
-      <button class="btn btn-dark" @click="exportToPDF('mycv.pdf', pdfSection)">
+      <button class="btn btn-dark d-none" @click="exportToPDF('mycv.pdf', pdfSection)" >
         DOWNLOAD AS PDF
         <font-awesome-icon icon="fa-solid fa-download" />
       </button>
+      <NuxtLink :to="{name: 'preview'}" class="btn btn-dark">Preview</NuxtLink>
     </div>
   </div>
 </template>

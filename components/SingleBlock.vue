@@ -3,18 +3,24 @@
     <!-- {{ block_data }} -->
     <div class="">
       <div class="mb-3">
+        <p
+          v-if="isPreview"
+          class="border-0 bg-white section_head"
+          style="font-size: 25px"
+        >
+          {{ block_data.title }}
+        </p>
         <textarea
-          type="text"
+          v-if="!isPreview"
           class="form-control border-0 bg-white section_head"
           style="font-size: 25px"
-
           id="title"
           v-model="block_data.title"
           rows="1"
         >
         </textarea>
       </div>
-      <div class="row">
+      <div class="row" v-if="!isPreview">
         <draggable handle=".handle" v-model="block_data.items" item-key="id">
           <template #item="{ element }">
             <div
@@ -34,7 +40,7 @@
                 />
                 <ResizeTextarea
                   type="text"
-                  class="form-control form-control-sm border-0 bg-white des_sec"
+                  class="form-control form-control-sm border-0 bg-white des_sec textarea"
                   id="title"
                   v-model="element.name"
                   :rows="1"
@@ -54,6 +60,20 @@
             />
           </button>
         </div>
+      </div>
+      <div class="row" v-if="isPreview">
+        <template v-for="(element, index) in block_data.items" :key="index">
+          <div
+            class="col-12"
+          >
+              <p
+                type="text"
+                class=" textarea border-0 bg-white des_sec"
+                id="title"
+              >{{ element.name }}
+                </p>
+            </div>
+        </template>
       </div>
     </div>
   </div>
@@ -82,6 +102,7 @@ export default {
   },
   props: {
     block_data: Object,
+    isPreview: Boolean,
   },
   methods: {
     addOption() {

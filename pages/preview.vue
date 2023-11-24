@@ -1,9 +1,9 @@
 <script setup>
 import { useStore } from "@/store";
-import { ref } from 'vue'
-import { exportToPDF } from '#imports'
+import { ref } from "vue";
+import { exportToPDF } from "#imports";
 
-const pdfSection = ref(null)
+const pdfSection = ref(null);
 
 const store = useStore();
 if (!store?.cvData?.data?.length) {
@@ -14,33 +14,41 @@ if (!store?.defaultData?.data?.length) {
 }
 
 const printProtected = (HTMLElement) => {
-  exportToPDF('pdf_protected_export.pdf', HTMLElement,
+  exportToPDF(
+    "pdf_protected_export.pdf",
+    HTMLElement,
+    {},
     {
-    }, {
       html2canvas: {
-        scale: 0.7,
-        useCORS: true
-      }
-    })
-}
+        scale: 0.5,
+        useCORS: true,
+      },
+    }
+  );
+};
 </script>
 <template>
   <div class="container">
-    <div
-    class=" bg-white col-lg-10 col-md-11 mx-auto"
-      ref="pdfSection"
-    >
-        <template v-for="(element,index) in store.cvData.data" :key="index">
-          <div class="">
-            <template v-if="element.type == 'info'">
-              <InfoBlock1 :block_data="element" />
-            </template>
-          </div>
-        </template>
-
-
+    <div class="bg-white col-lg-8 mx-auto" ref="pdfSection">
+      <template v-for="(element, index) in store.cvData.data" :key="index">
+        <div class="">
+          <template v-if="element.type == 'info'">
+            <InfoBlock :block_data="element" :isPreview="true" />
+          </template>
+          <template v-if="element.type == 'single-block'">
+            <SingleBlock :block_data="element" :isPreview="true" />
+          </template>
+          <template v-if="element.type == 'listing'">
+            <ListingBlock :block_data="element" :isPreview="true" />
+          </template>
+          <template v-if="element.type == 'three-column'">
+            <ThreeColumnBlock :block_data="element" :isPreview="true" />
+          </template>
+          <hr class="" v-if="store.cvData.data.length - 1 != index" />
+        </div>
+      </template>
     </div>
-    <div class="mt-0 pt-0 mb-4 text-center">
+    <div class="pt-0 my-4 text-center">
       <button class="btn btn-danger" @click="store.resetData()">
         RESET
         <font-awesome-icon icon="fa-solid fa-rotate-right" />
