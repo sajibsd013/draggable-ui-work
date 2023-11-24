@@ -8,8 +8,7 @@ export default defineNuxtConfig({
     "~/assets/styles/themes.css",
     "@fortawesome/fontawesome-svg-core/styles.css",
   ],
-  modules: ["@pinia/nuxt","@pinia-plugin-persistedstate/nuxt"],
-
+  modules: ["@pinia/nuxt","@pinia-plugin-persistedstate/nuxt","@sidebase/nuxt-pdf"],
   runtimeConfig: {
     public: {
       baseURL: process.env.API_BASE_URL || 'http://localhost:3000',

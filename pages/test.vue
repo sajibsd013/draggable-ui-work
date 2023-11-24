@@ -1,0 +1,83 @@
+<script setup>
+import { useStore } from "@/store";
+import { ref } from 'vue'
+import { exportToPDF } from '#imports'
+
+const pdfSection = ref(null)
+
+const store = useStore();
+if (!store?.cvData?.data?.length) {
+  store.getCvData();
+}
+if (!store?.defaultData?.data?.length) {
+  store.getDefaultData();
+}
+
+const printProtected = (HTMLElement) => {
+  exportToPDF('pdf_protected_export.pdf', HTMLElement,
+    {
+    }, {
+      html2canvas: {
+        scale: 0.7,
+        useCORS: true
+      }
+    })
+}
+</script>
+<template>
+  <div class="container">
+    <div
+    class=" bg-white col-lg-10 col-md-11 mx-auto"
+      ref="pdfSection"
+    >
+        <template v-for="(element,index) in store.cvData.data" :key="index">
+          <div class="">
+            <template v-if="element.type == 'info'">
+              <InfoBlock1 :block_data="element" />
+            </template>
+          </div>
+        </template>
+
+
+    </div>
+    <div class="mt-0 pt-0 mb-4 text-center">
+      <button class="btn btn-danger" @click="store.resetData()">
+        RESET
+        <font-awesome-icon icon="fa-solid fa-rotate-right" />
+      </button>
+      <button class="btn btn-dark mx-2">
+        SAVE
+        <font-awesome-icon icon="fa-solid fa-save" />
+      </button>
+      <button class="btn btn-dark" @click="printProtected(pdfSection)">
+        DOWNLOAD AS PDF
+        <font-awesome-icon icon="fa-solid fa-download" />
+      </button>
+    </div>
+  </div>
+</template>
+
+<script>
+import draggable from "vuedraggable";
+
+export default {
+  components: {
+    draggable,
+  },
+  name: "IndexPage",
+  data() {
+    return {
+      isOpen: false,
+      cv_data: "",
+    };
+  },
+  methods: {
+    toggleOpen() {
+      this.isOpen = !this.isOpen;
+    },
+  },
+  mounted() {},
+};
+</script>
+
+<style scoped></style>

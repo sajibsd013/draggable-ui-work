@@ -1,6 +1,8 @@
 <template>
   <div class="container">
     <h6 class="my-5">Welcome {{user?.username}}!</h6>
+
+    <Temp/>
   </div>
 </template>
 <script lang="ts" setup>

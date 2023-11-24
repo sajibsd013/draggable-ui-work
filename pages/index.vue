@@ -1,21 +1,23 @@
 <script setup>
 import { useStore } from "@/store";
+import { ref } from 'vue'
+import { exportToPDF } from '#imports'
+const pdfSection = ref(null)
 
 const store = useStore();
 if (!store?.cvData?.data?.length) {
   store.getCvData();
-  console.log("getCvData called");
-
 }
 if (!store?.defaultData?.data?.length) {
   store.getDefaultData();
-  console.log("getDefaultData called");
 }
 </script>
 <template>
   <div class="container">
     <div
       class="my-3 border-1 border border-secondary rounded-4 border-opacity-75 p-1 p-md-5 bg-white col-lg-10 col-md-11 mx-auto"
+      ref="pdfSection"
+      
     >
       <draggable handle=".handle" v-model="store.cvData.data" item-key="id">
         <template #item="{ element, index }">
@@ -142,7 +144,7 @@ if (!store?.defaultData?.data?.length) {
         SAVE
         <font-awesome-icon icon="fa-solid fa-save" />
       </button>
-      <button class="btn btn-dark">
+      <button class="btn btn-dark" @click="exportToPDF('mycv.pdf', pdfSection)">
         DOWNLOAD AS PDF
         <font-awesome-icon icon="fa-solid fa-download" />
       </button>
