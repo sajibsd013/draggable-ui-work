@@ -1,7 +1,7 @@
 <template>
   <div class="py-2 px-4">
     <div class="">
-      <div class="mb-3">
+      <div class="mb-0">
         <p
           v-if="isPreview"
           class="border-0 bg-white section_head"
@@ -80,7 +80,7 @@
               <ul class="w-100 mb-0 pb-0">
                 <li class="mb-0 pb-0">
                   <p
-                    class="textarea form-control border-0 bg-white small px-0 mx-0 py-1 my-0"
+                    class="textarea des_sec border-0 bg-white small px-0 mx-0 py-1 my-0"
                   >
                   {{ element.name }}
                   </p>

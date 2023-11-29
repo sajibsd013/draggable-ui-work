@@ -20,7 +20,7 @@ const printProtected = (HTMLElement) => {
     {},
     {
       html2canvas: {
-        scale: 0.5,
+        scale: 0.6,
         useCORS: true,
       },
     }
@@ -29,25 +29,28 @@ const printProtected = (HTMLElement) => {
 </script>
 <template>
   <div class="container">
-    <div class="bg-white col-lg-8 mx-auto" ref="pdfSection">
-      <template v-for="(element, index) in store.cvData.data" :key="index">
-        <div class="">
-          <template v-if="element.type == 'info'">
-            <InfoBlock :block_data="element" :isPreview="true" />
-          </template>
-          <template v-if="element.type == 'single-block'">
-            <SingleBlock :block_data="element" :isPreview="true" />
-          </template>
-          <template v-if="element.type == 'listing'">
-            <ListingBlock :block_data="element" :isPreview="true" />
-          </template>
-          <template v-if="element.type == 'three-column'">
-            <ThreeColumnBlock :block_data="element" :isPreview="true" />
-          </template>
-          <hr class="" v-if="store.cvData.data.length - 1 != index" />
-        </div>
-      </template>
+    <div class=" mx-auto " style="max-width: 750px;">
+      <div class="bg-white  pb-5" ref="pdfSection">
+        <template v-for="(element, index) in store.cvData.data" :key="index">
+          <div class="">
+            <template v-if="element.type == 'info'">
+              <InfoBlock :block_data="element" :isPreview="true" />
+            </template>
+            <template v-if="element.type == 'single-block'">
+              <SingleBlock :block_data="element" :isPreview="true" />
+            </template>
+            <template v-if="element.type == 'listing'">
+              <ListingBlock :block_data="element" :isPreview="true" />
+            </template>
+            <template v-if="element.type == 'three-column'">
+              <ThreeColumnBlock :block_data="element" :isPreview="true" />
+            </template>
+            <hr class="" v-if="store.cvData.data.length - 1 != index" />
+          </div>
+        </template>
+      </div>
     </div>
+
     <div class="pt-0 my-4 text-center">
       <button class="btn btn-danger" @click="store.resetData()">
         RESET

@@ -148,7 +148,9 @@ if (!store?.defaultData?.data?.length) {
         DOWNLOAD AS PDF
         <font-awesome-icon icon="fa-solid fa-download" />
       </button>
-      <NuxtLink :to="{name: 'preview'}" class="btn btn-dark">Preview</NuxtLink>
+      <NuxtLink :to="{name: 'preview'}" class="btn btn-dark">Preview
+        <font-awesome-icon icon="fa-solid fa-eye" />
+      </NuxtLink>
     </div>
   </div>
 </template>
