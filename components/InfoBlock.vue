@@ -27,15 +27,15 @@
             <div class="rounded justify-content-center">
               <div class="d-flex justify-content-start align-items-start">
                 <div class="row g-0 w-100">
-                  <div class="col-md-5">
-                    <p class="textarea border-0 bg-white fw-semibold">
+                  <div class="col-md-3">
+                    <p class="textarea border-0 bg-white fw-semibold"  >
                       {{ element.label }}
                     </p>
                   </div>
-                  <div class="col-md-7">
-                    <pre class="textarea border-0 bg-white">{{
+                  <div class="col-md-9">
+                    <p class="textarea border-0 bg-white">{{
                       element.information
-                    }}</pre>
+                    }}</p>
                   </div>
                 </div>
               </div>
@@ -47,15 +47,15 @@
             <div class="rounded justify-content-center">
               <div class="d-flex justify-content-start align-items-start">
                 <div class="row g-0 w-100">
-                  <div class="col-md-5">
+                  <div class="col-md-3">
                     <p class="textarea border-0 bg-white fw-semibold">
                       {{ element.label }}
                     </p>
                   </div>
-                  <div class="col-md-7">
-                    <pre class="textarea border-0 bg-white">{{
+                  <div class="col-md-9">
+                    <p class="textarea border-0 bg-white">{{
                       element.information
-                    }}</pre>
+                    }}</p>
                   </div>
                 </div>
               </div>
@@ -83,7 +83,7 @@
                     />
                   </div>
                   <div class="row g-0 w-100">
-                    <div class="col-md-5">
+                    <div class="col-md-3">
                       <textarea
                         type="text"
                         class="form-control textarea form-control-sm border-0 bg-white fw-semibold"
@@ -93,7 +93,7 @@
                       >
                       </textarea>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-9">
                       <ResizeTextarea
                         type="text"
                         class="form-control form-control-sm border-0 bg-white small textarea"
@@ -138,7 +138,7 @@
                   </div>
                   <div class="row g-0 w-100">
                     <div
-                      class="col-md-5 d-flex justify-content-start aling-items-center"
+                      class="col-md-3 d-flex justify-content-start aling-items-center"
                     >
                       <textarea
                         type="text"
@@ -149,7 +149,7 @@
                       >
                       </textarea>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-9">
                       <ResizeTextarea
                         type="text"
                         class="form-control form-control-sm border-0 bg-white small textarea"

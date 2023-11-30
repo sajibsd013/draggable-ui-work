@@ -1,5 +1,5 @@
 <template>
-  <div class="root" :class="store?.cvData?.theme?`theme-${store?.cvData?.theme}`:`theme-default`">
+  <div class="root " >
     <Header />
     <FlotingMenu />
     <NuxtPage />

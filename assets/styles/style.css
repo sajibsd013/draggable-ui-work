@@ -5,7 +5,13 @@ body {
   font-family: helvetica, arial, sans-serif;
   font-size: 14px;
   background-color: #ececec;
+
 }
+.preview{
+  font-family: helvetica, arial, sans-serif;
+  font-size: 14px;
+}
+
 pre {
   font-family: helvetica, arial, sans-serif;
   font-size: 14px;
@@ -46,6 +52,10 @@ pre {
 }
 .pointer {
   cursor: pointer;
+}
+  
+.floting__menu:hover .floting_menu__text{
+  display: block!important;
 }
 
 .trash__btn {

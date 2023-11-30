@@ -15,7 +15,7 @@ if (!store?.defaultData?.data?.length) {
 <template>
   <div class="container">
     <div
-      class="my-3 border-1 border border-secondary rounded-4 border-opacity-75 p-1 p-md-5 bg-white col-lg-10 col-md-11 mx-auto"
+      class="my-3 border-1 border border-secondary rounded-4 border-opacity-75 p-1 p-md-5 bg-white col-lg-10 col-md-11 mx-auto" :class="store?.cvData?.theme?`theme-${store?.cvData?.theme}`:`theme-default`"
       ref="pdfSection"
       
     >

@@ -29,10 +29,18 @@ const printProtected = (HTMLElement) => {
 </script>
 <template>
   <div class="container">
-    <div class=" mx-auto " style="max-width: 750px;">
-      <div class="bg-white  pb-5" ref="pdfSection">
+    <div class="mx-auto" style="max-width: 745px">
+      <div
+        class="bg-white preview pb-5"
+        ref="pdfSection"
+        :class="
+          store?.cvData?.theme
+            ? `theme-${store?.cvData?.theme}`
+            : `theme-default`
+        "
+      >
         <template v-for="(element, index) in store.cvData.data" :key="index">
-          <div class="">
+          <div class="pb-">
             <template v-if="element.type == 'info'">
               <InfoBlock :block_data="element" :isPreview="true" />
             </template>
@@ -45,7 +53,10 @@ const printProtected = (HTMLElement) => {
             <template v-if="element.type == 'three-column'">
               <ThreeColumnBlock :block_data="element" :isPreview="true" />
             </template>
-            <hr class="" v-if="store.cvData.data.length - 1 != index" />
+            <div
+              class="border border-top mx-3 mb-3"
+              v-if="store.cvData.data.length - 1 != index"
+            />
           </div>
         </template>
       </div>
@@ -90,5 +101,4 @@ export default {
   mounted() {},
 };
 </script>
-
-<style scoped></style>
+<style></style>

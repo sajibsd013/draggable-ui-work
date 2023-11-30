@@ -74,7 +74,7 @@
       <div class="row g-0" v-if="isPreview">
         <template v-for="(element, index) in block_data.items" :key="index">
           <div
-            class="rounded justify-content-end col-md-4 col-6"
+            class="rounded justify-content-end col-md-4 col-6 three-column"
           >
 
               <ul class="w-100 mb-0 pb-0">
