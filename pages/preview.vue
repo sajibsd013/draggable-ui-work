@@ -63,14 +63,6 @@ const printProtected = (HTMLElement) => {
     </div>
 
     <div class="pt-0 my-4 text-center">
-      <button class="btn btn-danger" @click="store.resetData()">
-        RESET
-        <font-awesome-icon icon="fa-solid fa-rotate-right" />
-      </button>
-      <button class="btn btn-dark mx-2">
-        SAVE
-        <font-awesome-icon icon="fa-solid fa-save" />
-      </button>
       <button class="btn btn-dark" @click="printProtected(pdfSection)">
         DOWNLOAD AS PDF
         <font-awesome-icon icon="fa-solid fa-download" />

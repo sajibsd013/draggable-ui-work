@@ -1,7 +1,4 @@
-@font-face {
-  font-family: MyJost;
-  src: url('../font/Jost/static/Jost-Black.ttf');
-}
+
 .theme-default .section_head{
     font-weight: 600;
   }

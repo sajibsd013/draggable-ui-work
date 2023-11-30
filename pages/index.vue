@@ -1,9 +1,18 @@
 <script setup>
 import { useStore } from "@/store";
-import { ref } from 'vue'
-import { exportToPDF } from '#imports'
-const pdfSection = ref(null)
+import { ref } from "vue";
+import { exportToPDF } from "#imports";
+import { useCVStore } from "~/store/cv";
+import { storeToRefs } from "pinia"; // import storeToRefs helper hook from pinia
+import { useAuthStore } from "~/store/auth"; // import the auth store we just created
 
+const router = useRouter();
+
+const { authenticated, user } = storeToRefs(useAuthStore()); // make authenticated state reactive with storeToRefs
+
+const pdfSection = ref(null);
+
+const cv = useCVStore();
 const store = useStore();
 if (!store?.cvData?.data?.length) {
   store.getCvData();
@@ -14,10 +23,13 @@ if (!store?.defaultData?.data?.length) {
 </script>
 <template>
   <div class="container">
+    <!-- {{ store?.cvData }} -->
     <div
-      class="my-3 border-1 border border-secondary rounded-4 border-opacity-75 p-1 p-md-5 bg-white col-lg-10 col-md-11 mx-auto" :class="store?.cvData?.theme?`theme-${store?.cvData?.theme}`:`theme-default`"
+      class="my-3 border-1 border border-secondary rounded-4 border-opacity-75 p-1 p-md-5 bg-white col-lg-10 col-md-11 mx-auto"
+      :class="
+        store?.cvData?.theme ? `theme-${store?.cvData?.theme}` : `theme-default`
+      "
       ref="pdfSection"
-      
     >
       <draggable handle=".handle" v-model="store.cvData.data" item-key="id">
         <template #item="{ element, index }">
@@ -34,16 +46,16 @@ if (!store?.defaultData?.data?.length) {
               />
             </div>
             <template v-if="element.type == 'info'">
-              <InfoBlock :block_data="element" :isPreview="false"/>
+              <InfoBlock :block_data="element" :isPreview="false" />
             </template>
             <template v-if="element.type == 'single-block'">
-              <SingleBlock :block_data="element" :isPreview="false"/>
+              <SingleBlock :block_data="element" :isPreview="false" />
             </template>
             <template v-if="element.type == 'listing'">
-              <ListingBlock :block_data="element" :isPreview="false"/>
+              <ListingBlock :block_data="element" :isPreview="false" />
             </template>
             <template v-if="element.type == 'three-column'">
-              <ThreeColumnBlock :block_data="element" :isPreview="false"/>
+              <ThreeColumnBlock :block_data="element" :isPreview="false" />
             </template>
             <hr class="" v-if="store.cvData.data.length - 1 != index" />
           </div>
@@ -136,19 +148,26 @@ if (!store?.defaultData?.data?.length) {
       </div>
     </div>
     <div class="mt-0 pt-0 mb-4 text-center">
-      <button class="btn btn-danger" @click="store.resetData()">
+      <button class="btn btn-danger mx-2" @click="store.resetData()">
         RESET
         <font-awesome-icon icon="fa-solid fa-rotate-right" />
       </button>
-      <button class="btn btn-dark mx-2">
+      <button
+        class="btn btn-dark mx-2" v-if="authenticated"
+        @click="cv.saveCV({ cv: store?.cvData, user: user?.id })"
+      >
         SAVE
         <font-awesome-icon icon="fa-solid fa-save" />
       </button>
-      <button class="btn btn-dark d-none" @click="exportToPDF('mycv.pdf', pdfSection)" >
+      <button
+        class="btn btn-dark d-none"
+        @click="exportToPDF('mycv.pdf', pdfSection)"
+      >
         DOWNLOAD AS PDF
         <font-awesome-icon icon="fa-solid fa-download" />
       </button>
-      <NuxtLink :to="{name: 'preview'}" class="btn btn-dark">Preview
+      <NuxtLink :to="{ name: 'preview' }" class="btn btn-dark mx-2"
+        >Preview
         <font-awesome-icon icon="fa-solid fa-eye" />
       </NuxtLink>
     </div>
