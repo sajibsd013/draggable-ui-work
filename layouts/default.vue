@@ -1,7 +1,7 @@
 <template>
   <div class="root " >
     <Header />
-    <FlotingMenu />
+    <!-- <FlotingMenu /> -->
     <NuxtPage />
     <Footer />
   </div>
@@ -10,8 +10,18 @@
 <script lang="ts" setup>
 import { useAuthStore } from "~/store/auth"; // import the auth store we just created
 import { useStore } from "@/store";
-// use authenticateUser action from  auth store
+import { useCVStore } from "~/store/cv";
+
+const cv = useCVStore();
 const store = useStore();
+if (!store?.cvData?.data?.length) {
+  store.getCvData();
+}
+if (!store?.defaultData?.data?.length) {
+  store.getDefaultData();
+}
+
+// use authenticateUser action from  auth store
 const { refreshToken } = useAuthStore();
 refreshToken();
 setTimeout(() => {}, 10);

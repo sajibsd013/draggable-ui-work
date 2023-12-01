@@ -2,16 +2,12 @@
 import { useStore } from "@/store";
 import { ref } from "vue";
 import { exportToPDF } from "#imports";
+import { useCVStore } from "~/store/cv";
 
+const cv_store = useCVStore();
+cv_store.getCV();
 const pdfSection = ref(null);
 
-const store = useStore();
-if (!store?.cvData?.data?.length) {
-  store.getCvData();
-}
-if (!store?.defaultData?.data?.length) {
-  store.getDefaultData();
-}
 
 const printProtected = (HTMLElement) => {
   exportToPDF(
@@ -34,12 +30,10 @@ const printProtected = (HTMLElement) => {
         class="bg-white preview pb-5"
         ref="pdfSection"
         :class="
-          store?.cvData?.theme
-            ? `theme-${store?.cvData?.theme}`
-            : `theme-default`
+          cv_data?.theme ? `theme-${previewCV?.theme}` : `theme-default`
         "
       >
-        <template v-for="(element, index) in store.cvData.data" :key="index">
+        <template v-for="(element, index) in previewCV.data" :key="index">
           <div class="pb-">
             <template v-if="element.type == 'info'">
               <InfoBlock :block_data="element" :isPreview="true" />
@@ -55,7 +49,7 @@ const printProtected = (HTMLElement) => {
             </template>
             <div
               class="border border-top mx-3 mb-3"
-              v-if="store.cvData.data.length - 1 != index"
+              v-if="previewCV.data.length - 1 != index"
             />
           </div>
         </template>
@@ -78,7 +72,21 @@ export default {
   components: {
     draggable,
   },
-  name: "IndexPage",
+  name: "PreviewPage",
+  computed: {
+    previewCV(){
+      const store = useStore();
+      const route = useRoute();
+      const cv_store = useCVStore();
+      if(route.query.id){
+        const tmp = cv_store.CVList.find(({id})=> id==route.query.id)
+        if(tmp?.cv){
+          return JSON.parse(tmp.cv)
+        }
+      }
+      return store.cvData
+    }
+  },
   data() {
     return {
       isOpen: false,
@@ -90,7 +98,9 @@ export default {
       this.isOpen = !this.isOpen;
     },
   },
-  mounted() {},
+  mounted(){
+
+  }
 };
 </script>
 <style></style>

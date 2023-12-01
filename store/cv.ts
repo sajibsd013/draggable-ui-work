@@ -23,10 +23,56 @@ export const useCVStore = defineStore("CV", {
           user,
         },
       });
+      const router = useRouter();
+
+      if(data?.value){
+        router.push("/profile");
+      }
+
+
+    },
+    async updateCV({ cv, user, id }) {
+      const token = useCookie("token");
+      const { data, pending }: any = await useMyFetch(`/api/cv/${id}/`, {
+        method: "put",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token.value}`,
+        },
+        body: {
+          cv: JSON.stringify(cv),
+          user,
+        },
+      });
+      const router = useRouter();
+
+      if(data?.value){
+        router.push("/profile");
+      }
+
+
+    },
+    async deleteCV(id) {
+      const token = useCookie("token");
+      const { data, pending }: any = await useMyFetch(`/api/cv/${id}/`, {
+        method: "delete",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token.value}`,
+        },
+        body: {
+        },
+      });
+      this.getCV()
+
+
+      if(data?.value){
+      }
 
 
     },
     async getCV() {
+
       const token = useCookie("token");
       const { data, pending }: any = await useMyFetch("/api/cv/", {
         method: "get",
@@ -36,11 +82,12 @@ export const useCVStore = defineStore("CV", {
         },
       });
       if (data?.value) {
+        console.log('====================================');
+        console.log(data?.value);
+        console.log('====================================');
         this.cv_list = data?.value;
       }
     },
   },
-  persist: {
-    storage: persistedState.localStorage,
-  },
+  persist: true,
 });

@@ -5,7 +5,7 @@ const store = useStore();
 </script>
 
 <template>
-  <div class="floting__menu border rounded-pill py-5  px-2">
+  <div class="floting__menu border rounded-pill py-5  px-2" style="z-index: 99999999;">
     <div class="d-flex justify-content-center text-white text-center">
       <font-awesome-icon icon="fa-solid fa-bars " class="me-1" />
       <h6 class="d-none small floting_menu__text" >Themes</h6>

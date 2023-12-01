@@ -1,28 +1,71 @@
-<script lang="ts" setup>
+<script setup>
 import { storeToRefs } from "pinia"; // import storeToRefs helper hook from pinia
 import { useAuthStore } from "~/store/auth"; // import the auth store we just created
 import { useCVStore } from "~/store/cv";
-
 const router = useRouter();
-
 const { getUserData } = useAuthStore(); // use authenticateUser action from  auth store
 const { authenticated, user } = storeToRefs(useAuthStore()); // make authenticated state reactive with storeToRefs
 if (!authenticated.value) {
-    router.push("/login");
-  }
-// getUserData()
+  router.push("/login");
+}
 const cv_store = useCVStore();
 cv_store.getCV();
-
-
 </script>
 <template>
   <div class="container">
-    <h4 class="my-3">My CV</h4>
-    <div v-for="(cv,index) in cv_store.CVList" :key="index">
-      {{ cv.cv }}
-
+    <!-- {{ getCVList }}
+    <hr>
+    {{ CVList }} -->
+    <div
+      class="my-3 border-1 border border-secondary rounded-4 border-opacity-75 p-3 col-lg-8 bg-white col-md-11 mx-auto"
+    >
+      <h4 class="my-3">CV List</h4>
+      <ul class="list-group mb-3" v-for="(cv, index) in getCVList" :key="index">
+        <li class="list-group-item d-flex bg-light justify-content-between">
+          <span>
+            {{ JSON.parse(cv.cv).cv_name }}
+          </span>
+          <span>
+            <NuxtLink :to="`/preview?id=${cv.id}`" class="text-dark btn btn-sm"
+              ><font-awesome-icon icon="fa-solid fa-eye"
+            /></NuxtLink>
+            <NuxtLink :to="`/?id=${cv.id}`" class="mx-1 text-success btn btn-sm"
+              ><font-awesome-icon icon="fa-solid fa-edit"
+            /></NuxtLink>
+            <button class="text-success btn btn-sm" @click="onDelete(cv.id)">
+              <font-awesome-icon icon="fa-solid fa-trash" />
+            </button>
+          </span>
+        </li>
+      </ul>
     </div>
-
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    getCVList() {
+      const cv_store = useCVStore();
+      return cv_store.CVList;
+    },
+  },
+  data() {
+    return {
+      CVList: null,
+    };
+  },
+  methods: {
+    onDelete(id) {
+      const cv_store = useCVStore();
+      cv_store.deleteCV(id);
+ 
+    },
+  },
+  mounted() {
+
+  },
+};
+</script>
+
+<style scoped></style>

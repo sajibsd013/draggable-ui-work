@@ -6,7 +6,7 @@ import { useCVStore } from "~/store/cv";
 import { storeToRefs } from "pinia"; // import storeToRefs helper hook from pinia
 import { useAuthStore } from "~/store/auth"; // import the auth store we just created
 
-const router = useRouter();
+const route = useRoute();
 
 const { authenticated, user } = storeToRefs(useAuthStore()); // make authenticated state reactive with storeToRefs
 
@@ -14,24 +14,38 @@ const pdfSection = ref(null);
 
 const cv = useCVStore();
 const store = useStore();
-if (!store?.cvData?.data?.length) {
-  store.getCvData();
-}
-if (!store?.defaultData?.data?.length) {
-  store.getDefaultData();
-}
 </script>
 <template>
   <div class="container">
-    <!-- {{ store?.cvData }} -->
+    <FlotingMenu />
+    <div
+      class="my-3 border-1 border border-secondary rounded-4 border-opacity-75 px-3 py-1 bg-white col-lg-10 col-md-11 mx-auto"
+    >
+      <div class="d-flex g-3 align-items-center">
+        <div class="">
+          <label
+            for="cv"
+            style="min-width: 75px"
+            class="col-form-label fw-semibold"
+            >CV Name:</label
+          >
+        </div>
+        <div class="w-100">
+          <input
+            type="text"
+            id="cv"
+            v-model="CvData.cv_name"
+            class="form-control"
+          />
+        </div>
+      </div>
+    </div>
     <div
       class="my-3 border-1 border border-secondary rounded-4 border-opacity-75 p-1 p-md-5 bg-white col-lg-10 col-md-11 mx-auto"
-      :class="
-        store?.cvData?.theme ? `theme-${store?.cvData?.theme}` : `theme-default`
-      "
+      :class="CvData?.theme ? `theme-${CvData?.theme}` : `theme-default`"
       ref="pdfSection"
     >
-      <draggable handle=".handle" v-model="store.cvData.data" item-key="id">
+      <draggable handle=".handle" v-model="CvData.data" item-key="id">
         <template #item="{ element, index }">
           <div class="block block__outer rounded p-1">
             <div class="">
@@ -57,7 +71,7 @@ if (!store?.defaultData?.data?.length) {
             <template v-if="element.type == 'three-column'">
               <ThreeColumnBlock :block_data="element" :isPreview="false" />
             </template>
-            <hr class="" v-if="store.cvData.data.length - 1 != index" />
+            <hr class="" v-if="CvData.data.length - 1 != index" />
           </div>
         </template>
       </draggable>
@@ -92,7 +106,7 @@ if (!store?.defaultData?.data?.length) {
                 class="w-100 pointer new_section_image"
                 @click="
                   () => {
-                    store.addNewBlock('info');
+                    store.addNewBlock('info',CvData);
                     toggleOpen();
                   }
                 "
@@ -107,7 +121,7 @@ if (!store?.defaultData?.data?.length) {
                 class="w-100 pointer new_section_image"
                 @click="
                   () => {
-                    store.addNewBlock('three-column');
+                    store.addNewBlock('three-column',CvData);
                     toggleOpen();
                   }
                 "
@@ -122,7 +136,7 @@ if (!store?.defaultData?.data?.length) {
                 class="w-100 pointer new_section_image"
                 @click="
                   () => {
-                    store.addNewBlock('listing');
+                    store.addNewBlock('listing',CvData);
                     toggleOpen();
                   }
                 "
@@ -136,7 +150,7 @@ if (!store?.defaultData?.data?.length) {
                 class="w-100 pointer new_section_image"
                 @click="
                   () => {
-                    store.addNewBlock('single-block');
+                    store.addNewBlock('single-block',CvData);
                     toggleOpen();
                   }
                 "
@@ -153,10 +167,19 @@ if (!store?.defaultData?.data?.length) {
         <font-awesome-icon icon="fa-solid fa-rotate-right" />
       </button>
       <button
-        class="btn btn-dark mx-2" v-if="authenticated"
-        @click="cv.saveCV({ cv: store?.cvData, user: user?.id })"
+        class="btn btn-dark mx-2"
+        v-if="authenticated && !route.query.id"
+        @click="cv.saveCV({ cv: CvData, user: user?.id })"
       >
         SAVE
+        <font-awesome-icon icon="fa-solid fa-save" />
+      </button>
+      <button
+        class="btn btn-dark mx-2"
+        v-if="authenticated && route.query.id"
+        @click="cv.updateCV({ cv: CvData, user: user?.id, id:route.query.id })"
+      >
+        Update
         <font-awesome-icon icon="fa-solid fa-save" />
       </button>
       <button
@@ -182,6 +205,22 @@ export default {
     draggable,
   },
   name: "IndexPage",
+  computed: {
+    CvData() {
+      const store = useStore();
+      const route = useRoute();
+      const cv_store = useCVStore();
+      if (route.query.id) {
+        const tmp = cv_store.CVList.find(({ id }) => id == route.query.id);
+        if (tmp?.cv) {
+          store.setUpdateCvData(JSON.parse(tmp.cv));
+          return store.UpdateCvData;
+        }
+      }
+      return store.cvData;
+
+    },
+  },
   data() {
     return {
       isOpen: false,
