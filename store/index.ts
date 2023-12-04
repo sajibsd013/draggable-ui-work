@@ -49,8 +49,8 @@ export const useStore = defineStore("CvBuilder", {
           console.log(error.response);
         });
     },
-    removeBlcok(block: string) {
-      this.cv_data.data = this.cv_data?.data.filter((x,index) => index!=block);
+    removeBlcok(block,CvData) {
+      CvData.data = CvData?.data.filter((x,index) => index!=block);
     },
     addNewBlock(type, cv) {
       const block = this.blocks.find(x=>x.type==type)
@@ -64,9 +64,9 @@ export const useStore = defineStore("CvBuilder", {
       }
       
     },
-    changeThemes(ac: string){
-      if(this.cv_data?.theme){
-        this.cv_data.theme = ac
+    changeThemes(ac,CvData){
+      if(CvData?.theme){
+        CvData.theme = ac
       }
   }
 

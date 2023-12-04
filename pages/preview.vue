@@ -30,7 +30,7 @@ const printProtected = (HTMLElement) => {
         class="bg-white preview pb-5"
         ref="pdfSection"
         :class="
-          cv_data?.theme ? `theme-${previewCV?.theme}` : `theme-default`
+          previewCV?.theme ? `theme-${previewCV?.theme}` : `theme-default`
         "
       >
         <template v-for="(element, index) in previewCV.data" :key="index">

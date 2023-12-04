@@ -1,6 +1,5 @@
 <script setup>
 import { useStore } from "@/store";
-
 const store = useStore();
 </script>
 
@@ -16,8 +15,8 @@ const store = useStore();
         <li
           class="list-group-item small pointer text-center text-light border-0"
           style="text-transform: capitalize"
-          :class="themes == store.cvData.theme ? 'active_theme__li' : 'none'"
-          @click="store.changeThemes(`${themes}`)"
+          :class="themes == CvData.theme ? 'active_theme__li' : 'none'"
+          @click="store.changeThemes(`${themes}`,CvData)"
         >
           <span class="d-none floting_menu__text">{{ themes }}</span>
         </li>
@@ -32,6 +31,9 @@ export default {
     return {
       themes_list: ["default", "modern", "lavender", "deco"],
     };
+  },
+  props: {
+    CvData: Object,
   },
 };
 </script>

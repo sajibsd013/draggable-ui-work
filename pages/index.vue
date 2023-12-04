@@ -17,7 +17,7 @@ const store = useStore();
 </script>
 <template>
   <div class="container">
-    <FlotingMenu />
+    <FlotingMenu :CvData="CvData"/>
     <div
       class="my-3 border-1 border border-secondary rounded-4 border-opacity-75 px-3 py-1 bg-white col-lg-10 col-md-11 mx-auto"
     >
@@ -52,7 +52,7 @@ const store = useStore();
               <font-awesome-icon
                 icon="fa-solid fa-xmark"
                 class="text-white pointer outer_action__btn trash__btn border rounded-circle"
-                @click="store.removeBlcok(index)"
+                @click="store.removeBlcok(index,CvData)"
               />
               <font-awesome-icon
                 icon="fa-solid fa-bars"
