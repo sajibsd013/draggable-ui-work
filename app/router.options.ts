@@ -26,6 +26,11 @@ export default <RouterConfig>{
       name: 'preview',
       path: '/preview',
       component: () => import('~/pages/preview.vue')
+    },
+    {
+      name: 'register',
+      path: '/register',
+      component: () => import('~/pages/register.vue')
     }
   ],
 }

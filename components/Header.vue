@@ -22,7 +22,7 @@
       </div> -->
       <div v-if="!authenticated" >
         <NuxtLink class="btn btn-sm btn-outline-light mx-1" :to="{ name: 'login' }">Login </NuxtLink>
-        <NuxtLink class="btn btn-sm btn-outline-light" :to="{ name: 'create' }"
+        <NuxtLink class="btn btn-sm btn-outline-light" :to="{ name: 'register' }"
           >Create account</NuxtLink
         >
       </div>
