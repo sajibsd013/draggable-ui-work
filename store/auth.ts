@@ -1,13 +1,12 @@
 import { defineStore } from "pinia";
 
+const TOKEN_MAXAGE = process.env.accessTokenMaxAge;
+const REFRESH_TOKEN_MAXAGE = process.env.refreshTokenMaxAge;
 
-const TOKEN_MAXAGE = process.env.accessTokenMaxAge
-const REFRESH_TOKEN_MAXAGE = process.env.refreshTokenMaxAge
-
-console.log(TOKEN_MAXAGE,REFRESH_TOKEN_MAXAGE);
+console.log(TOKEN_MAXAGE, REFRESH_TOKEN_MAXAGE);
 
 interface UserPayloadInterface {
-  username: string;
+  email: string;
   password: string;
 }
 
@@ -16,19 +15,55 @@ export const useAuthStore = defineStore("auth", {
     authenticated: false,
     user: {},
     loading: false,
-    
   }),
   actions: {
-    async authenticateUser({ username, password }: UserPayloadInterface) {
+    async emailVerification(token) {
+      // useFetch from nuxt 3
+
+      const { data, pending }: any = await useMyFetch(
+        `api/auth/email-verify?token=${token}`,
+        {
+          method: "get",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      const router = useRouter();
+      this.loading = pending;
+
+      if (data?.value) {
+        router.push(`/login?status=activated`);
+      }
+    },
+    async CreateAccount({ email, password }: UserPayloadInterface) {
       // useFetch from nuxt 3
       const { data, pending }: any = await useMyFetch(
-        // "http://127.0.0.1:8000/auth/login",
-        "/auth/login",
+        "api/auth/registration/",
         {
           method: "post",
           headers: { "Content-Type": "application/json" },
           body: {
-            username,
+            email,
+            password,
+          },
+        }
+      );
+      const router = useRouter();
+      this.loading = pending;
+      if (data?.value) {
+        const email = data?.value.email;
+        router.push(`/email-verification?email=${email}`);
+      }
+    },
+    async authenticateUser({ email, password }: UserPayloadInterface) {
+      // useFetch from nuxt 3
+      const { data, pending }: any = await useMyFetch(
+        // "http://127.0.0.1:8000/auth/login",
+        "api/auth/login/",
+        {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: {
+            email,
             password,
           },
         }
@@ -51,7 +86,7 @@ export const useAuthStore = defineStore("auth", {
     async getUserData() {
       const token = useCookie("token");
       // useFetch from nuxt 3
-      const { data, pending }: any = await useMyFetch("/auth/user", {
+      const { data, pending }: any = await useMyFetch("api/auth/user/", {
         method: "get",
         headers: {
           "Content-Type": "application/json",
@@ -81,7 +116,7 @@ export const useAuthStore = defineStore("auth", {
 
       if (refresh_token.value) {
         const { data, pending }: any = await useMyFetch(
-          "/auth/token-refresh/",
+          "api/auth/token/refresh/",
           {
             method: "post",
             headers: { "Content-Type": "application/json" },
@@ -106,8 +141,10 @@ export const useAuthStore = defineStore("auth", {
     },
     refreshToken() {
       this.refreshTokenF();
-      const refresh_interval =  setInterval(this.refreshTokenF, TOKEN_MAXAGE*1000);
-
+      const refresh_interval = setInterval(
+        this.refreshTokenF,
+        TOKEN_MAXAGE * 1000
+      );
     },
   },
   persist: {

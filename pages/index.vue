@@ -1,5 +1,4 @@
 
-import type { Vue2 } from 'nuxt/dist/app/compat/vue-demi';
 <template>
   <div class="container">
     <div class="my-3 border-1 border border-secondary rounded-4 border-opacity-75 p-md-5 p-3 bg-white col-lg-10 col-md-11 mx-auto">

@@ -10,7 +10,7 @@ export const useCVStore = defineStore("CV", {
     CVList: (state) => state.cv_list,
   },
   actions: {
-    async saveCV({ cv, user }: UserPayloadInterface) {
+    async saveCV({ cv }: UserPayloadInterface) {
       const token = useCookie("token");
       const { data, pending }: any = await useMyFetch("/api/cv/", {
         method: "post",
@@ -20,7 +20,6 @@ export const useCVStore = defineStore("CV", {
         },
         body: {
           cv: JSON.stringify(cv),
-          user,
         },
       });
       const router = useRouter();
@@ -31,7 +30,7 @@ export const useCVStore = defineStore("CV", {
 
 
     },
-    async updateCV({ cv, user, id }) {
+    async updateCV({ cv, id }) {
       const token = useCookie("token");
       const { data, pending }: any = await useMyFetch(`/api/cv/${id}/`, {
         method: "put",
@@ -41,7 +40,6 @@ export const useCVStore = defineStore("CV", {
         },
         body: {
           cv: JSON.stringify(cv),
-          user,
         },
       });
       const router = useRouter();

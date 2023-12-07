@@ -3,15 +3,20 @@
     <div
       class="my-4 border-1 border border-secondary rounded-4 border-opacity-75 p-3 p-md-5 bg-white col-lg-5 col-md-6 mx-auto"
     >
+      <div class="alert alert-success text-center" role="alert" v-if="route.query.status=='activated'">
+        Account <b>{{ route.query.status }}</b
+        >, You can login now
+      </div>
       <h4 class="mb-3 text-primary">Welcome back!</h4>
       <form class="form" @submit.prevent="login">
         <div class="mb-3">
-          <label for="username" class="form-label">Username</label>
+          <label for="email" class="form-label">Enter email</label>
           <input
+          type="email"
             class="form-control"
-            id="username"
-            placeholder="Enter your username"
-            v-model="user.username"
+            id="email"
+            placeholder=""
+            v-model="user.email"
           />
         </div>
         <div class="mb-3">
@@ -20,12 +25,15 @@
             class="form-control"
             id="password"
             type="password"
-            placeholder="Enter your password"
+            placeholder=""
             v-model="user.password"
           />
         </div>
-        <div class="d-grid gap-2">
+        <div class="d-grid gap-2 text-center">
           <button class="btn btn-primary btn-sm" type="submit">Log in</button>
+            <h6>or</h6>
+          <NuxtLink :to="{name: 'register'}"  >Create Account</NuxtLink>
+
         </div>
       </form>
     </div>
@@ -34,14 +42,15 @@
 <script lang="ts" setup>
 import { storeToRefs } from "pinia"; // import storeToRefs helper hook from pinia
 import { useAuthStore } from "~/store/auth"; // import the auth store we just created
+const route = useRoute();
 
 const { authenticateUser } = useAuthStore(); // use authenticateUser action from  auth store
 
 const { authenticated } = storeToRefs(useAuthStore()); // make authenticated state reactive with storeToRefs
 
 const user = ref({
-  username: "admin",
-  password: "admin",
+  email: "",
+  password: "",
 });
 const router = useRouter();
 

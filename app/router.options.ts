@@ -31,6 +31,11 @@ export default <RouterConfig>{
       name: 'register',
       path: '/register',
       component: () => import('~/pages/register.vue')
+    },
+    {
+      name: 'email-verification',
+      path: '/email-verification',
+      component: () => import('~/pages/email-verification.vue')
     }
   ],
 }

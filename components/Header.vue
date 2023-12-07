@@ -33,7 +33,7 @@
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          <small> Welcome {{ user?.username }}!</small>
+          <small> Welcome {{ user?.email }}!</small>
         </button>
         <ul class="dropdown-menu dropdown-menu-end small">
           <li><NuxtLink class="dropdown-item small pointer" :to="{ name: 'profile' }">Profile</NuxtLink></li>

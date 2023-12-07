@@ -169,7 +169,7 @@ const store = useStore();
       <button
         class="btn btn-dark mx-2"
         v-if="authenticated && !route.query.id"
-        @click="cv.saveCV({ cv: CvData, user: user?.id })"
+        @click="cv.saveCV({ cv: CvData })"
       >
         SAVE
         <font-awesome-icon icon="fa-solid fa-save" />
@@ -177,7 +177,7 @@ const store = useStore();
       <button
         class="btn btn-dark mx-2"
         v-if="authenticated && route.query.id"
-        @click="cv.updateCV({ cv: CvData, user: user?.id, id:route.query.id })"
+        @click="cv.updateCV({ cv: CvData, id:route.query.id })"
       >
         Update
         <font-awesome-icon icon="fa-solid fa-save" />
