@@ -21,12 +21,16 @@
     
       </div> -->
       <div v-if="!authenticated" >
+        <NuxtLink class="btn btn-sm btn-outline-light mx-1" :to="{ name: 'create' }">Create CV</NuxtLink>
         <NuxtLink class="btn btn-sm btn-outline-light mx-1" :to="{ name: 'login' }">Login </NuxtLink>
         <NuxtLink class="btn btn-sm btn-outline-light" :to="{ name: 'register' }"
           >Create account</NuxtLink
         >
       </div>
+
       <div class="dropdown-center" v-if="authenticated">
+        <NuxtLink class="btn btn-sm btn-outline-light mx-1" :to="{ name: 'create' }">Create CV </NuxtLink>
+
         <button
           class="btn btn-light dropdown-toggle small"
           type="button"
